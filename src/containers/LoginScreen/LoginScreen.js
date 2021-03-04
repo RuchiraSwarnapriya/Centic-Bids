@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { View, SafeAreaView, Button, StyleSheet, TextInput, Text } from 'react-native'
 import { HOME } from '../../routes/route_paths'
 import { USER, EMAIL_VALIDATE_REGEX } from '../../utils/constants'
+import Header from '../../components/header/Header'
 
 
 const LoginScreen = ({ navigation }) => {
@@ -27,8 +28,9 @@ const LoginScreen = ({ navigation }) => {
 
 
     return (
-        <SafeAreaView style={styles.container}>
-            <View>
+        <SafeAreaView style={styles.main}>
+            <Header title = "Login" navigation = {navigation}/>
+            <View style={styles.container}>
                 <TextInput style={styles.textInput} placeholder="Plase enter your email" keyboardType='email-address' onChangeText={value=> setEmail(value)} />
                 <View style={styles.separator} />
                 <TextInput style={styles.textInput} placeholder="Plase enter your password" secureTextEntry = {true} onChangeText={value => setPassword(value)}/>
@@ -44,6 +46,9 @@ const LoginScreen = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
+    main:{
+        flex:1
+    },
     container: {
         flex: 1,
         justifyContent: 'center',

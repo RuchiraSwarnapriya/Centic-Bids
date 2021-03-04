@@ -1,9 +1,21 @@
-import React, { useEffect } from 'react'
+import React, { useEffect ,useCallback} from 'react'
 import { View, Button, StyleSheet, SafeAreaView } from 'react-native'
 import { LOGIN, HOME } from '../../routes/route_paths'
 import { GUEST } from '../../utils/constants'
+import { fetchItems } from '../../redux/actions/auctionItem'
+import { useDispatch } from 'react-redux'
 
 const LandingScreen = ({ navigation }) => {
+
+    const dispatch = useDispatch();
+
+    const fetchInitialData = useCallback(async () => {
+        await dispatch(fetchItems());
+    }, [dispatch]);
+
+    useEffect(() => {
+        fetchInitialData();
+    }, [fetchInitialData]);
 
     const LoginNavigatgion = () => navigation.navigate(LOGIN);
     

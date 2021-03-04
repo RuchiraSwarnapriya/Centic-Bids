@@ -1,12 +1,26 @@
-import { FETCH_ITEMS } from '../../action-types';
+import { SET_AUCTION_ITEMS, GET_AUCTION_ITEMS } from '../../action-types';
+import { fetchAuctionItems } from "../../../services/auctionItems";
 
-export const fetchIems = () => dispatch => {
-    fetch('https://jsonplaceholder.typicode.com/posts/1')
-        .then(res => res.json())
-        .then(posts =>
-            dispatch({
-                type: FETCH_ITEMS,
-                payload: posts
-            })
-        );
+export const getAuctionItems = () => {
+    return { type: GET_AUCTION_ITEMS };
+};
+
+export const setAuctionItems = (payload) => {
+    return { type: SET_AUCTION_ITEMS, payload };
+};
+
+export const fetchItems = () => {
+    return async (dispatch) => {
+        try {
+            dispatch(getAuctionItems());
+
+            const response = await fetchAuctionItems();
+
+            dispatch(setAuctionItems(response.data || {}));
+            return true;
+        } catch (e) {
+            dispatch(setAuctionItems({}));
+            return false;
+        }
+    };
 };

@@ -8,6 +8,8 @@ target 'centic_bids' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'centic_bidsTests' do
     inherit! :complete
     # Pods for testing
