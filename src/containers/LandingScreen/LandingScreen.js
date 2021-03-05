@@ -1,26 +1,15 @@
 import React, { useEffect ,useCallback} from 'react'
 import { View, Button, StyleSheet, SafeAreaView } from 'react-native'
-import { LOGIN, HOME } from '../../routes/route_paths'
+import { LOGIN, HOME } from '../../navigation/routes/route_paths'
 import { GUEST } from '../../utils/constants'
-import { fetchItems } from '../../redux/actions/auctionItem'
-import { useDispatch } from 'react-redux'
+
+
+import HomeStack from '../../navigation/routes/HomeStack'
 
 const LandingScreen = ({ navigation }) => {
 
-    const dispatch = useDispatch();
-
-    const fetchInitialData = useCallback(async () => {
-        await dispatch(fetchItems());
-    }, [dispatch]);
-
-    useEffect(() => {
-        fetchInitialData();
-    }, [fetchInitialData]);
-
     const LoginNavigatgion = () => navigation.navigate(LOGIN);
     
-    const HomeNavigation = () => navigation.navigate(HOME , {role : GUEST});
-
     return (
         <SafeAreaView style={styles.container}>
             <View>
@@ -33,7 +22,6 @@ const LandingScreen = ({ navigation }) => {
                 <Button
                     title="Guest"
                     color="green"
-                    onPress={HomeNavigation}
                 />
             </View>
         </SafeAreaView>

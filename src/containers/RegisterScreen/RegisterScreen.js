@@ -1,16 +1,15 @@
 import React, { useState, useContext } from 'react';
-import { View, SafeAreaView, Button, StyleSheet, TextInput, Text, TouchableOpacity } from 'react-native';
+import { View, SafeAreaView, Button, StyleSheet, TextInput, Text } from 'react-native';
 import { EMAIL_VALIDATE_REGEX } from '../../utils/constants';
 import Header from '../../components/header/Header';
 import { AuthContext } from '../../navigation/AuthProvider';
-import { REGISTER } from '../../navigation/routes/route_paths';
 
 
 const LoginScreen = ({ navigation }) => {
 
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
-    const { login } = useContext(AuthContext);
+    const { register } = useContext(AuthContext);
 
     const ValidateInputs = () => {
 
@@ -21,25 +20,24 @@ const LoginScreen = ({ navigation }) => {
             alert("Password cannot be empty")
         }
         else {
-            login(Email, Password)
+            register(Email, Password)
         }
 
     }
 
     return (
         <SafeAreaView style={styles.main}>
-            <Header title="Login" navigation={navigation} />
+            <Header title="Register" navigation={navigation} />
             <View style={styles.container}>
                 <TextInput style={styles.textInput} placeholder="Plase enter your email" keyboardType='email-address' onChangeText={value => setEmail(value)} />
                 <View style={styles.separator} />
                 <TextInput style={styles.textInput} placeholder="Plase enter your password" secureTextEntry={true} onChangeText={value => setPassword(value)} />
                 <View style={styles.separator} />
                 <Button
-                    title="Login"
+                    title="Register"
                     color="#841584"
                     onPress={() => ValidateInputs()}
                 />
-                <TouchableOpacity onPress={()=> navigation.navigate(REGISTER)}><Text>Haven't Registered! Register Here</Text></TouchableOpacity>
             </View>
         </SafeAreaView>
     )

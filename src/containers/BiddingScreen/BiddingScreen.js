@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, SafeAreaView, TextInput, Button, TouchableOpacity, Alert } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, Alert } from 'react-native'
 import Header from "../../components/header/Header"
 import { fetchItems } from '../../redux/actions/auctionItem'
-import { HOME } from '../../routes/route_paths'
+import { HOME } from '../../navigation/routes/route_paths'
 import { useDispatch } from 'react-redux'
 
 

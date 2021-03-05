@@ -1,27 +1,30 @@
-import React, { useEffect, useState } from 'react'
-import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native'
-import { GUEST, USER } from '../../utils/constants'
+import React, { useEffect, useState, useCallback } from 'react'
+import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native'
+import { fetchItems } from '../../redux/actions/auctionItem'
 import { useSelector } from 'react-redux'
 import NoPreViewImage from '../../assets/images/no_preview.png'
-import { BIDDING } from '../../routes/route_paths'
-import Swiper from 'react-native-swiper'
+import { BIDDING } from '../../navigation/routes/route_paths'
+import ImageZoom from 'react-native-image-pan-zoom';
+import { useDispatch } from 'react-redux'
 
-const HomeScreen = ({ route, navigation }) => {
+const HomeScreen = ({ navigation }) => {
 
-    const { role } = route.params;
+    const dispatch = useDispatch();
+
+    const fetchInitialData = useCallback(async () => {
+        await dispatch(fetchItems());
+    }, [dispatch]);
 
     useEffect(() => {
-        fetch('https://picsum.photos/v2/list?page=2&limit=5')
-            .then((response) => response.json())
-            .then((json) => setData(json))
-            .catch((error) => alert('Please check your network'))
-            .finally(() => setLoading(false));
+        fetchInitialData();
+    }, [fetchInitialData]);
 
-    }, []);
 
     const [isLoading, setLoading] = useState(true);
 
     const [data, setData] = useState([]);
+
+    console.log(data.url)
 
     const bidNow = (item) => navigation.navigate(BIDDING, {
         title: item.title,
@@ -35,34 +38,21 @@ const HomeScreen = ({ route, navigation }) => {
 
     });
 
-    const showAlert = () => alert("For place a bid for this item you have to Log first !")
-
     const auctionItemDetails = useSelector(({ auctionItems }) => auctionItems.items);
 
-    const Item = ({ item }) => (
+    const Card = ({ item }) => (
         <View>
             <View style={styles.card}>
                 <View style={styles.cardDetails}>
                     <View style={styles.carouselContainer}>
-                        <Swiper autoplayTimeout={5}
-                            style={styles.wrapper}
-                            showsButtons={false}
-                            loadMinimal={true}
-                            showsPagination={false}
-                            loop={true} autoplay={true}
-                        >
-                            {/* map image from database */}
-                            {data.map((data, index) => {
-                                return (
-                                    <View key={index} style={styles.slide1}>
-                                        <Image style={styles.itemImage}
-                                            // source={{ uri:data.downlaod_url }}
-                                            source={NoPreViewImage}
-                                        />
-                                    </View>
-                                )
-                            })}
-                        </Swiper>
+                        <Image style={styles.itemImage}
+                            source={{
+                                uri: 'https://reactnative.dev/img/tiny_logo.png',
+                            }}
+                        />
+                        <Image style={styles.itemImage}
+                            source={NoPreViewImage}
+                        />
                     </View>
                     <View style={styles.itemDetails}>
                         <Text style={styles.itemTitle}>{item.title}</Text>
@@ -84,16 +74,9 @@ const HomeScreen = ({ route, navigation }) => {
                         <Text style={styles.timer}>20:00</Text>
                         <Text style={styles.palceHolder}>Remaning Time</Text>
                     </View>
-                    {role == USER &&
-                        <TouchableOpacity style={styles.bidButton} onPress={() => bidNow(item)} >
-                            <Text style={styles.bidButtonText}>BID NOW</Text>
-                        </TouchableOpacity>
-                    }
-                    {role == GUEST &&
-                        <TouchableOpacity style={[styles.bidButton, { backgroundColor: 'grey' }]} onPress={() => showAlert()} >
-                            <Text style={styles.bidButtonText}>BID NOW</Text>
-                        </TouchableOpacity>
-                    }
+                    <TouchableOpacity style={styles.bidButton} onPress={() => bidNow(item)} >
+                        <Text style={styles.bidButtonText}>BID NOW</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -102,7 +85,7 @@ const HomeScreen = ({ route, navigation }) => {
     return (
         <View style={styles.main}>
             <Text style={styles.title}>Ongoing Bids</Text>
-            <FlatList data={auctionItemDetails} renderItem={Item} keyExtractor={item => item.id} />
+            <FlatList data={auctionItemDetails} renderItem={Card} keyExtractor={item => item.id} />
         </View>
     )
 }
@@ -128,8 +111,7 @@ const styles = StyleSheet.create({
         position: 'relative',
         top: 10,
         width: 150,
-        height: 150,
-        paddingTop: 10,
+        height: 250,
     },
     slide1: {
         justifyContent: 'center',
@@ -155,7 +137,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         margin: 15,
         width: 120,
-        height: 150
+        height: 100
     },
     itemDetails: {
         margin: 10
