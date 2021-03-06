@@ -1,10 +1,27 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import NoPreViewImage from '../../assets/images/no_preview.png'
+import { BIDDING } from '../../navigation/routes/route_paths'
 
 
-export const Card = ({ item }) => (
-    <View>
+const FlatlistView = ({ navigation, data, type }) => {
+
+    const bidNow = (item) => navigation.navigate(BIDDING, {
+        title: item.title,
+        description: item.body,
+        // baseprice: item.baseprice,
+        // currentBid: item.currentBid,
+        // timer:item.remaningTime
+        basePrice: '100$',
+        currentBid: 150,
+        timer: '20 Min',
+    });
+
+    const alertDisplay = () => {
+        alert('For Place a BID, You have to Log !');
+    }
+
+    const Card = ({ item }) => (
         <View style={styles.card}>
             <View style={styles.cardDetails}>
                 <View style={styles.carouselContainer}>
@@ -37,19 +54,26 @@ export const Card = ({ item }) => (
                     <Text style={styles.timer}>20:00</Text>
                     <Text style={styles.palceHolder}>Remaning Time</Text>
                 </View>
-                <TouchableOpacity style={styles.bidButton} onPress={() => bidNow(item)} >
-                    <Text style={styles.bidButtonText}>BID NOW</Text>
-                </TouchableOpacity>
+                {type == "User" &&
+                    <TouchableOpacity style={styles.bidButton} onPress={() => bidNow(item)} >
+                        <Text style={styles.bidButtonText}>BID NOW</Text>
+                    </TouchableOpacity>
+                }{type == "Guest" &&
+                    <TouchableOpacity style={[styles.bidButton, {backgroundColor:'grey'}]} onPress={() => alertDisplay()} >
+                        <Text style={styles.bidButtonText}>BID NOW</Text>
+                    </TouchableOpacity>
+                }
+
             </View>
         </View>
-    </View>
-);
+    );
+
+    return (
+        <FlatList data={data} renderItem={Card} keyExtractor={item => item.id} />
+    )
+}
 
 const styles = StyleSheet.create({
-    main: {
-        flex: 1,
-        alignItems: 'center'
-    },
     card: {
         backgroundColor: 'white',
         width: 370,
@@ -57,7 +81,6 @@ const styles = StyleSheet.create({
         shadowColor: "#000",
         elevation: 2,
         borderRadius: 10,
-
     },
     cardDetails: {
         flexDirection: 'row'
@@ -162,23 +185,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white'
     },
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        marginHorizontal: 16,
-    },
-    title: {
-        textAlign: 'center',
-        marginVertical: 8,
-        fontSize: 20,
-        fontWeight: 'bold'
-    },
-    separator: {
-        marginVertical: 8,
-        borderBottomColor: '#FFFFFF',
-        borderBottomWidth: StyleSheet.hairlineWidth,
-    },
-    textInput: {
-        backgroundColor: '#C0C0C0'
-    }
 });
+
+export default FlatlistView

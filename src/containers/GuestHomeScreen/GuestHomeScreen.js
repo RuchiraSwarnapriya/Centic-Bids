@@ -5,8 +5,7 @@ import { useSelector } from 'react-redux'
 import FlatListView from "../../components/FlatListView";
 import { useDispatch } from 'react-redux'
 
-
-const HomeScreen = ({ navigation }) => {
+const GuestHomeScreen = ({navigation}) => {
 
     const dispatch = useDispatch();
 
@@ -23,7 +22,7 @@ const HomeScreen = ({ navigation }) => {
     return (
         <View style={styles.main}>
             <Text style={styles.title}>Ongoing Bids</Text>
-            <FlatListView navigation={navigation} data={auctionItemDetails} type="User" />
+            <FlatListView navigation={navigation} data={auctionItemDetails} type="Guest" />
         </View>
     )
 }
@@ -41,4 +40,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomeScreen
+export default GuestHomeScreen

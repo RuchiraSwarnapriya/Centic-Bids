@@ -1,14 +1,13 @@
 import React, { useEffect ,useCallback} from 'react'
-import { View, Button, StyleSheet, SafeAreaView } from 'react-native'
-import { LOGIN, HOME } from '../../navigation/routes/route_paths'
-import { GUEST } from '../../utils/constants'
+import { View, Button, StyleSheet, SafeAreaView } from 'react-native';
+import { LOGIN, GUESTHOME } from '../../navigation/routes/route_paths';
 
-
-import HomeStack from '../../navigation/routes/HomeStack'
 
 const LandingScreen = ({ navigation }) => {
 
     const LoginNavigatgion = () => navigation.navigate(LOGIN);
+
+    const GuestNavigation = () => navigation.navigate(GUESTHOME);
     
     return (
         <SafeAreaView style={styles.container}>
@@ -22,6 +21,7 @@ const LandingScreen = ({ navigation }) => {
                 <Button
                     title="Guest"
                     color="green"
+                    onPress={GuestNavigation}
                 />
             </View>
         </SafeAreaView>
@@ -33,10 +33,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         marginHorizontal: 16,
-    },
-    title: {
-        textAlign: 'center',
-        marginVertical: 8,
     },
     separator: {
         marginVertical: 8,
