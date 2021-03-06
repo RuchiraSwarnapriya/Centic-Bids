@@ -1,8 +1,7 @@
 import React, { createContext, useState } from 'react';
 import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
-import registerUser from "../services/Registration";
-import messaging from '@react-native-firebase/messaging';
+import { registerUser } from "../services/Registration";
+import messaging from '@react-native-firebase/messaging'
 
 
 export const AuthContext = createContext({});
@@ -27,16 +26,18 @@ export const AuthProvider = ({ children }) => {
                 register: async (email, password) => {
                     try {
                         await auth().createUserWithEmailAndPassword(email, password).then((response) => {
-                            
+
+                            // auth user id 
                             const uid = response.user.uid;
 
-                            const data = {
-                                id: uid,
-                                email,
-                            };
+                            // to get fcm toke check user persmission
+                            messaging().requestPermission();
 
-                            // registerUser(uid, data);
-                            firestore().collection('users').doc(uid).set(data);
+                            //get fcm token and send it to firestore database
+                            messaging().getToken().then(token => {
+                                registerUser(uid, email, token);
+                            });
+
                         });
                     } catch (e) {
                         console.log(e);

@@ -4,12 +4,16 @@ import { fetchItems } from '../../redux/actions/auctionItem'
 import { useSelector } from 'react-redux'
 import NoPreViewImage from '../../assets/images/no_preview.png'
 import { BIDDING } from '../../navigation/routes/route_paths'
-import ImageZoom from 'react-native-image-pan-zoom';
+import messaging from '@react-native-firebase/messaging'
+import { requestUserPermission, getFcmToken } from "../../services/Firebase"
 import { useDispatch } from 'react-redux'
+
 
 const HomeScreen = ({ navigation }) => {
 
     const dispatch = useDispatch();
+
+    const [FcmToken, setFcmToken] = useState('');
 
     const fetchInitialData = useCallback(async () => {
         await dispatch(fetchItems());
@@ -17,14 +21,33 @@ const HomeScreen = ({ navigation }) => {
 
     useEffect(() => {
         fetchInitialData();
+        getFcmToken();
+        console.log(getFcmToken());
     }, [fetchInitialData]);
 
 
-    const [isLoading, setLoading] = useState(true);
+    // const requestUserPermission = async () => {
+    //     const authStatus = await messaging().requestPermission();
+    //     const enabled =
+    //         authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+    //         authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
-    const [data, setData] = useState([]);
+    //     if (enabled) {
+    //         getFcmToken()
+    //         console.log('Authorization status:', authStatus);
+    //     }
+    // }
 
-    console.log(data.url)
+    // const getFcmToken = async () => {
+    //     const fcmToken = await messaging().getToken();
+    //     if (fcmToken) {
+    //         console.log(fcmToken);
+    //         console.log("Your Firebase Token is:", fcmToken);
+    //         setFcmToken(fcmToken);
+    //     } else {
+    //         console.log("Failed", "No token received");
+    //     }
+    // }
 
     const bidNow = (item) => navigation.navigate(BIDDING, {
         title: item.title,
@@ -35,6 +58,7 @@ const HomeScreen = ({ navigation }) => {
         basePrice: '100$',
         currentBid: 150,
         timer: '20 Min',
+        fcmToken: FcmToken
 
     });
 

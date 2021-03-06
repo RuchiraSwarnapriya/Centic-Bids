@@ -10,11 +10,13 @@ const BiddingScreen = ({ route, navigation }) => {
 
     const dispatch = useDispatch();
 
-    const { title, description, basePrice, currentBid, timer } = route.params;
+    const { title, description, basePrice, currentBid, timer, fcmToken } = route.params;
 
     const [CurrentBid, setCurrentBid] = useState(currentBid)
 
     const [MyBid, setMyBid] = useState('');
+
+    const FCMToken = fcmToken;
 
     const verifyBid = () => {
 
