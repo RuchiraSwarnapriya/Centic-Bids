@@ -4,7 +4,7 @@ import NoPreViewImage from '../../assets/images/no_preview.png'
 import { BIDDING } from '../../navigation/routes/route_paths'
 
 
-const FlatlistView = ({ navigation, data, type }) => {
+const FlatlistView = ({ navigation, data, type, token }) => {
 
     const bidNow = (item) => navigation.navigate(BIDDING, {
         title: item.title,
@@ -15,6 +15,7 @@ const FlatlistView = ({ navigation, data, type }) => {
         basePrice: '100$',
         currentBid: 150,
         timer: '20 Min',
+        fcmToken : token
     });
 
     const alertDisplay = () => {

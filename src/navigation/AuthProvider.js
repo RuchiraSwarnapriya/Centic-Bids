@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
 import auth from '@react-native-firebase/auth';
-import { registerUser } from "../services/Registration";
+import { registerUser } from "../services/User";
 import messaging from '@react-native-firebase/messaging'
 
 

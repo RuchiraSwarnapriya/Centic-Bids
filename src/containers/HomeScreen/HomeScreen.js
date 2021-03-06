@@ -4,6 +4,7 @@ import { fetchItems } from '../../redux/actions/auctionItem'
 import { useSelector } from 'react-redux'
 import FlatListView from "../../components/FlatListView";
 import { useDispatch } from 'react-redux'
+import { fetchUser } from '../../redux/actions/user';
 
 
 const HomeScreen = ({ navigation }) => {
@@ -11,7 +12,8 @@ const HomeScreen = ({ navigation }) => {
     const dispatch = useDispatch();
 
     const fetchInitialData = useCallback(async () => {
-        await dispatch(fetchItems());
+        dispatch(fetchItems());
+        dispatch(fetchUser());
     }, [dispatch]);
 
     useEffect(() => {
@@ -20,10 +22,12 @@ const HomeScreen = ({ navigation }) => {
 
     const auctionItemDetails = useSelector(({ auctionItems }) => auctionItems.items);
 
+    const fcmToken = useSelector (({currentUser}) => currentUser.user.fcmToken);
+
     return (
         <View style={styles.main}>
             <Text style={styles.title}>Ongoing Bids</Text>
-            <FlatListView navigation={navigation} data={auctionItemDetails} type="User" />
+            <FlatListView navigation={navigation} data={auctionItemDetails} type="User"  token ={fcmToken} />
         </View>
     )
 }

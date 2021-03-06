@@ -1,4 +1,4 @@
-import { FETCH_ITEMS, GET_AUCTION_ITEMS, SET_AUCTION_ITEMS } from '../../action-types';
+import { GET_AUCTION_ITEMS, SET_AUCTION_ITEMS } from '../../action-types';
 
 export const itemInitialState = {
     items: [],

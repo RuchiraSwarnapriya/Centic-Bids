@@ -6,8 +6,14 @@ export const registerUser = (uid, email, token) => {
     const data = {
         id: uid,
         email: email,
-        fcmToken:token
+        fcmToken: token
     };
 
     return firestore().collection('users').doc(uid).set(data);
+};
+
+
+//get current app user details for firestore
+export const fetchUserDeatils = () => {
+  
 };
