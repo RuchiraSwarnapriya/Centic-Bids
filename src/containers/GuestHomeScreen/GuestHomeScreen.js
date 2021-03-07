@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { fetchItems } from '../../redux/actions/auctionItem'
 import { useSelector } from 'react-redux'
-import FlatListView from "../../components/FlatListView";
+import FlatListView from "../../components/flatListView/FlatlistView";
 import { useDispatch } from 'react-redux'
 
 const GuestHomeScreen = ({navigation}) => {

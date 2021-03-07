@@ -4,7 +4,7 @@ import auth from '@react-native-firebase/auth';
 import AuthStack from './AuthStack';
 import HomeStack from './HomeStack';
 import { AuthContext } from '../AuthProvider';
-import Loading from '../../components/Loading/Loading';
+import Loader from '../../components/loader/Loader';
 
 export default function Routes() {
   const { user, setUser } = useContext(AuthContext);
@@ -24,7 +24,7 @@ export default function Routes() {
   }, []);
 
   if (loading) {
-    return <Loading />;
+    return <Loader />;
   }
 
   return (

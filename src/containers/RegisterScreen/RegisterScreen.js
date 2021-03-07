@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { View, SafeAreaView, Button, StyleSheet, TextInput, Text } from 'react-native';
 import { EMAIL_VALIDATE_REGEX } from '../../utils/constants';
-import Header from '../../components/AppHeader';
+import Header from '../../components/appHeader/Header';
 import { AuthContext } from '../../navigation/AuthProvider';
 
 

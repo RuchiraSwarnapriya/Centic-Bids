@@ -26,7 +26,7 @@ exports.sendPushNotification = functions.firestore
     // the payload is what will be delivered to the device(s)
     let payload = {
       notification: {
-      title: "Higer Bid Placed",
+      title: "Higher Bid Placed",
       body: "Someone placed a higher bid that you have bidded",
     //   sound:
     //   badge:

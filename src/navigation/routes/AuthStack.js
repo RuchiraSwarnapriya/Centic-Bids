@@ -1,9 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack'
-import LandingScreen from '../../containers/LandingScreen/LandingScreen';
-import LoginScreen from '../../containers/LoginScreen/LoginScreen';
-import RegisterScreen from "../../containers/RegisterScreen/RegisterScreen";
-import GuestHomeScreen from "../../containers/GuestHomeScreen/GuestHomeScreen";
+import LandingScreen from '../../containers/landingScreen/LandingScreen';
+import LoginScreen from '../../containers/loginScreen/LoginScreen';
+import RegisterScreen from "../../containers/registerScreen/RegisterScreen";
+import GuestHomeScreen from "../../containers/guestHomeScreen/GuestHomeScreen";
 import {
     LANDING,
     LOGIN,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from '../../containers/HomeScreen/HomeScreen';
-import BiddingScreen from "../../containers/BiddingScreen/BiddingScreen";
+import HomeScreen from '../../containers/homeScreen/HomeScreen';
+import BiddingScreen from "../../containers/biddingScreen/BiddingScreen";
 import {
     HOME,
     BIDDING,
