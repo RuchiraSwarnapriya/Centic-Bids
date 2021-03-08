@@ -15,7 +15,6 @@ export const fetchAuctionItems = () => {
 
 // update auction item new price
 export const updateItemDetails = (id, newBid, token, bidderID) => {
-
     return firestore().collection('items').doc(id).update({
         currentBid: newBid,
         fcmToken: token,

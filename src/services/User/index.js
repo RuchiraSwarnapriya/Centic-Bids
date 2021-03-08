@@ -2,13 +2,11 @@ import firestore from '@react-native-firebase/firestore';
 
 // add new user details to firebase database
 export const registerUser = (uid, email, token) => {
-
     const data = {
         id: uid,
         email: email,
         fcmToken: token
     };
-
     return firestore().collection('users').doc(uid).set(data);
 };
 
@@ -18,7 +16,8 @@ export const fetchUserDeatils = (uid) => {
 };
 
 //update fcm token when user login diffrent device
-export const updateFcmToken = () => {
-
-
+export const updateFcmToken = (uid, token) => {
+    return firestore().collection('users').doc(uid).update({
+        fcmToken: token,
+    });
 };
