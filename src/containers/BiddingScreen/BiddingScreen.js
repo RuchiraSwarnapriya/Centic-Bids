@@ -5,7 +5,7 @@ import { fetchItems } from '../../redux/actions/auctionItem';
 import { updateItemDetails } from "../../services/auctionItems";
 import { HOME } from '../../navigation/routes/route_paths';
 import { useDispatch, useSelector } from 'react-redux';
-import CountDown from 'react-native-countdown-component';
+import CountDowner from "../../components/countDowner/CountDowner";
 
 
 const BiddingScreen = ({ route, navigation }) => {
@@ -14,7 +14,9 @@ const BiddingScreen = ({ route, navigation }) => {
 
     const dispatch = useDispatch();
 
-    const [CurrentBid, setCurrentBid] = useState(currentBid)
+    const [CurrentBid, setCurrentBid] = useState(currentBid);
+
+    const [BidButtonStatus, setBidButtonStatus] = useState(true);
 
     const [MyBid, setMyBid] = useState('');
 
@@ -25,6 +27,14 @@ const BiddingScreen = ({ route, navigation }) => {
     const currentTime = new Date().getTime() / 1000;
 
     const remaningTime = expTime - currentTime
+
+    const timeOver = () => {
+        setBidButtonStatus(false)
+    };
+
+    const bidOver = () => {
+        alert('You cannot place a bid for this item at the moment now because time is over ');
+    };
 
     const verifyBid = () => {
 
@@ -38,7 +48,7 @@ const BiddingScreen = ({ route, navigation }) => {
             confirmBid();
         }
 
-    }
+    };
 
     const confirmBid = () => {
         Alert.alert("Confirmation", "Are you sure to place this order ?", [
@@ -49,7 +59,7 @@ const BiddingScreen = ({ route, navigation }) => {
             },
             { text: "YES", onPress: () => placeBid() }
         ]);
-    }
+    };
 
     const placeBid = () => {
         setCurrentBid(MyBid);
@@ -57,7 +67,7 @@ const BiddingScreen = ({ route, navigation }) => {
         updateItemDetails("001", MyBid, fcmToken, bidderID);
         dispatch(fetchItems());
         navigation.navigate(HOME);
-    }
+    };
 
     return (
         <SafeAreaView style={styles.main}>
@@ -66,12 +76,7 @@ const BiddingScreen = ({ route, navigation }) => {
                 <Text style={styles.currentBid}>{CurrentBid}$</Text>
                 <Text style={styles.placeHolder}>Current Bid</Text>
                 <View style={styles.timerContainer}>
-                    <CountDown
-                        until={remaningTime}
-                        onFinish={() => alert('finished')}
-                        onPress={() => alert('hello')}
-                        size={15}
-                    />
+                    <CountDowner remaningTime={remaningTime} onFinish={timeOver} size={15} />
                     <Text style={[styles.placeHolder, { fontSize: 12 }]}>Remaining Time</Text>
                 </View>
                 <View style={styles.detailContainer}>
@@ -84,9 +89,14 @@ const BiddingScreen = ({ route, navigation }) => {
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.description}>{description}</Text>
                 <TextInput style={styles.textInput} placeholder="Place your bid here" keyboardType='numeric' onChangeText={value => setMyBid(value)} />
-                <TouchableOpacity style={styles.bidButton} onPress={() => verifyBid()}>
-                    <Text style={styles.bidButtonText}>PLACE BID</Text>
-                </TouchableOpacity>
+                {BidButtonStatus ?
+                    <TouchableOpacity style={styles.bidButton} onPress={() => verifyBid()}>
+                        <Text style={styles.bidButtonText}>PLACE BID</Text>
+                    </TouchableOpacity> :
+                    <TouchableOpacity style={styles.bidButton} onPress={() => bidOver()}>
+                        <Text style={styles.bidButtonText}>PLACE BID</Text>
+                    </TouchableOpacity>
+                }
             </View>
         </SafeAreaView>
     )

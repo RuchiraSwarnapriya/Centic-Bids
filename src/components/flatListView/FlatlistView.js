@@ -25,8 +25,10 @@ const FlatlistView = ({ navigation, data, type, }) => {
     };
 
     const bidOver = () => {
-        alert('You cannot place a bid for this item at the moment now');
+        alert('You cannot place a bid for this item at the moment now because time is over ');
     };
+
+    console.log(BidButtonStatus)
 
     const Card = ({ item }) => {
 
@@ -62,13 +64,11 @@ const FlatlistView = ({ navigation, data, type, }) => {
                         <CountDowner remaningTime={remaningTime} onFinish={timeOver} size={12} />
                         <Text style={styles.palceHolder}>Remaning Time</Text>
                     </View>
-                    {BidButtonStatus == false &&
-                        <TouchableOpacity style={styles.bidButton} onPress={() => bidOver()} >
+                    {type == "User" && BidButtonStatus ?
+                        < TouchableOpacity style={styles.bidButton} onPress={() => bidNow(item)} >
                             <Text style={styles.bidButtonText}>BID NOW</Text>
-                        </TouchableOpacity>
-                    }
-                    {type == "User" &&
-                        <TouchableOpacity style={styles.bidButton} onPress={() => bidNow(item)} >
+                        </TouchableOpacity> :
+                        < TouchableOpacity style={styles.bidButton} onPress={() => bidOver()} >
                             <Text style={styles.bidButtonText}>BID NOW</Text>
                         </TouchableOpacity>
                     }{type == "Guest" &&
@@ -77,7 +77,7 @@ const FlatlistView = ({ navigation, data, type, }) => {
                         </TouchableOpacity>
                     }
                 </View>
-            </View>
+            </View >
         )
     };
 
