@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack'
+import { createStackNavigator } from '@react-navigation/stack';
 import LandingScreen from '../../containers/landingScreen/LandingScreen';
 import LoginScreen from '../../containers/loginScreen/LoginScreen';
 import RegisterScreen from "../../containers/registerScreen/RegisterScreen";
@@ -9,7 +9,7 @@ import {
     LOGIN,
     REGISTER,
     GUESTHOME
-} from './route_paths'
+} from './route_paths';
 
 const Stack = createStackNavigator();
 

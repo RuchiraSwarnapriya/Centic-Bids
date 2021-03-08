@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, TouchableOpacity, Dimensions, StyleSheet } from 'react-native'
+import { Text, View, TouchableOpacity, Dimensions, StyleSheet } from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 
 const window = Dimensions.get('window');

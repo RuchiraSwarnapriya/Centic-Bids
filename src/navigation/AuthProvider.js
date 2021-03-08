@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react';
 import auth from '@react-native-firebase/auth';
 import { registerUser, updateFcmToken } from "../services/user";
-import messaging from '@react-native-firebase/messaging'
+import messaging from '@react-native-firebase/messaging';
 
 
 export const AuthContext = createContext({});

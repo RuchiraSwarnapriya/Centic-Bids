@@ -1,23 +1,25 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, Alert } from 'react-native'
-import Header from "../../components/appHeader/Header"
-import { fetchItems } from '../../redux/actions/auctionItem'
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, Alert } from 'react-native';
+import Header from "../../components/appHeader/Header";
+import { fetchItems } from '../../redux/actions/auctionItem';
 import { updateItemDetails } from "../../services/auctionItems";
-import { HOME } from '../../navigation/routes/route_paths'
-import { useDispatch } from 'react-redux'
+import { HOME } from '../../navigation/routes/route_paths';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const BiddingScreen = ({ route, navigation }) => {
+    
+    const { title, description, basePrice, currentBid, expTime } = route.params;
 
     const dispatch = useDispatch();
-
-    const { title, description, basePrice, currentBid, expTime, fcmToken } = route.params;
 
     const [CurrentBid, setCurrentBid] = useState(currentBid)
 
     const [MyBid, setMyBid] = useState('');
 
-    const FCMToken = fcmToken;
+    const fcmToken = useSelector(({ currentUser }) => currentUser.user.fcmToken);
+
+    const bidderID = useSelector(({ currentUser }) => currentUser.user.id);
 
     const verifyBid = () => {
 
@@ -47,7 +49,7 @@ const BiddingScreen = ({ route, navigation }) => {
     const placeBid = () => {
         setCurrentBid(MyBid);
         console.log(MyBid)
-        updateItemDetails("001", MyBid);
+        updateItemDetails("001", MyBid, fcmToken, bidderID);
         dispatch(fetchItems());
         navigation.navigate(HOME);
     }

@@ -1,19 +1,20 @@
-import { config } from 'firebase-functions';
-import { initializeApp } from 'firebase-admin';
-initializeApp(config().firebase);
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+admin.initializeApp(functions.config().firebase);
 
 
-exports.sendNotificationToFCMToken = functions.firestore.document('messages/{mUid}').onWrite(async (event) => {
+exports.sendNotificationToFCMToken = functions.firestore.document('items/{itemsId}').onWrite(async (event) => {
     
-    const latestBid = event.after.get('leatestBid');
+    const currentBid = event.after.get('currentBid');
     const title = event.after.get('title');
-    const content = event.after.get('content');
-    const fcmToken = event.before.get('leatestUserToken');
+    const fcmToken = event.before.get('fcmToken');
+    const msgTitle = "Higher Bid is Placed for " + title
+    const body = "Someone placed higher bid for this item, New Bid is " +currentBid+"$" ; 
 
     var message = {
         notification: {
-            title: title,
-            body: content,
+            title: msgTitle,
+            body: body ,
         },
         token: fcmToken,
     }

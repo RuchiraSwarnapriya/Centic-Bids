@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native'
-import NoPreViewImage from '../../assets/images/no_preview.png'
-import { BIDDING } from '../../navigation/routes/route_paths'
-import CountDown from 'react-native-countdown-component'
+import NoPreViewImage from '../../assets/images/no_preview.png';
+import { BIDDING } from '../../navigation/routes/route_paths';
+import CountDown from 'react-native-countdown-component';
 
-const FlatlistView = ({ navigation, data, type, token }) => {
+const FlatlistView = ({ navigation, data, type, }) => {
 
     const bidNow = (item) => navigation.navigate(BIDDING, {
         title: item.title,
@@ -12,7 +12,6 @@ const FlatlistView = ({ navigation, data, type, token }) => {
         basePrice: item.basePrice,
         currentBid: item.currentBid,
         expTime: item.expTime.seconds,
-        fcmToken: token
     });
 
     const alertDisplay = () => {

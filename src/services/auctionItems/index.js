@@ -2,7 +2,6 @@ import firestore from '@react-native-firebase/firestore';
 
 // fetch auction item details
 export const fetchAuctionItems = () => {
-    // return firestore().collection('items').get();
     return firestore().collection('items')
         .get()
         .then(querySnapshot => querySnapshot
@@ -15,11 +14,13 @@ export const fetchAuctionItems = () => {
 };
 
 // update auction item new price
-export const updateItemDetails = (id, newBid) => {
+export const updateItemDetails = (id, newBid, token, bidderID) => {
 
     console.log(id, newBid)
     return firestore().collection('items').doc(id).update({
         currentBid: newBid,
+        fcmToken: token,
+        currentBidderID: bidderID
     });
 
 };
