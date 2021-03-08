@@ -16,7 +16,6 @@ export const fetchUser = (uid) => {
 
             const response = await fetchUserDeatils(uid);
 
-            console.log("user", response)
             dispatch(setUserDetails(response._data || {}));
 
             return true;

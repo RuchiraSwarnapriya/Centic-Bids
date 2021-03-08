@@ -15,8 +15,6 @@ const HomeScreen = ({ navigation }) => {
 
     const uid = user.uid;
 
-    console.log(uid)
-
     const dispatch = useDispatch();
 
     const fetchInitialData = useCallback(async () => {
@@ -28,12 +26,10 @@ const HomeScreen = ({ navigation }) => {
         fetchInitialData();
     }, [fetchInitialData]);
 
-
     const auctionItemDetails = useSelector(({ auctionItems }) => auctionItems.items);
 
     const fcmToken = useSelector(({ currentUser }) => currentUser.user.fcmToken);
 
-    console.log(fcmToken)
     return (
         <View style={styles.main}>
             <Text style={styles.title}>Ongoing Bids</Text>

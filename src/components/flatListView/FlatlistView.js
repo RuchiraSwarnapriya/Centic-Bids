@@ -2,72 +2,83 @@ import React from 'react'
 import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import NoPreViewImage from '../../assets/images/no_preview.png'
 import { BIDDING } from '../../navigation/routes/route_paths'
-
+import CountDown from 'react-native-countdown-component'
 
 const FlatlistView = ({ navigation, data, type, token }) => {
 
     const bidNow = (item) => navigation.navigate(BIDDING, {
         title: item.title,
-        description: item.body,
-        // baseprice: item.baseprice,
-        // currentBid: item.currentBid,
-        // timer:item.remaningTime
-        basePrice: '100$',
-        currentBid: 150,
-        timer: '20 Min',
-        fcmToken : token
+        description: item.description,
+        basePrice: item.basePrice,
+        currentBid: item.currentBid,
+        expTime: item.expTime.seconds,
+        fcmToken: token
     });
 
     const alertDisplay = () => {
         alert('For Place a BID, You have to Log !');
     }
 
-    const Card = ({ item }) => (
-        <View style={styles.card}>
-            <View style={styles.cardDetails}>
-                <View style={styles.carouselContainer}>
-                    <Image style={styles.itemImage}
-                        source={{
-                            uri: 'https://reactnative.dev/img/tiny_logo.png',
-                        }}
-                    />
-                    <Image style={styles.itemImage}
-                        source={NoPreViewImage}
-                    />
-                </View>
-                <View style={styles.itemDetails}>
-                    <Text style={styles.itemTitle}>{item.title}</Text>
-                    <Text style={styles.itemDescription}>{item.body}</Text>
-                    <View style={styles.priceContainer}>
-                        <View style={styles.priceAmount}>
-                            <Text style={styles.baseprice}>100 $</Text>
-                            <Text style={styles.palceHolder}>Base Price</Text>
-                        </View>
-                        <View style={styles.priceAmount}>
-                            <Text style={styles.bidPrice}>150 $</Text>
-                            <Text style={styles.palceHolder}>Current Bid</Text>
+    const Card = ({ item }) => {
+
+        const expTime = item.expTime.seconds
+       
+        const currentTime = new Date().getTime() / 1000;
+
+        const remaningTime = expTime - currentTime
+
+        return (
+            <View style={styles.card}>
+                <View style={styles.cardDetails}>
+                    <View style={styles.carouselContainer}>
+                        <Image style={styles.itemImage}
+                            source={{
+                                uri: 'https://reactnative.dev/img/tiny_logo.png',
+                            }}
+                        />
+                        <Image style={styles.itemImage}
+                            source={NoPreViewImage}
+                        />
+                    </View>
+                    <View style={styles.itemDetails}>
+                        <Text style={styles.itemTitle}>{item.title}</Text>
+                        <Text style={styles.itemDescription}>{item.description}</Text>
+                        <View style={styles.priceContainer}>
+                            <View style={styles.priceAmount}>
+                                <Text style={styles.baseprice}>{item.basePrice}$</Text>
+                                <Text style={styles.palceHolder}>Base Price</Text>
+                            </View>
+                            <View style={styles.priceAmount}>
+                                <Text style={styles.bidPrice}>{item.currentBid}$</Text>
+                                <Text style={styles.palceHolder}>Current Bid</Text>
+                            </View>
                         </View>
                     </View>
                 </View>
-            </View>
-            <View style={styles.buttonAndTimer}>
-                <View style={styles.timerContainer}>
-                    <Text style={styles.timer}>20:00</Text>
-                    <Text style={styles.palceHolder}>Remaning Time</Text>
-                </View>
-                {type == "User" &&
-                    <TouchableOpacity style={styles.bidButton} onPress={() => bidNow(item)} >
-                        <Text style={styles.bidButtonText}>BID NOW</Text>
-                    </TouchableOpacity>
-                }{type == "Guest" &&
-                    <TouchableOpacity style={[styles.bidButton, {backgroundColor:'grey'}]} onPress={() => alertDisplay()} >
-                        <Text style={styles.bidButtonText}>BID NOW</Text>
-                    </TouchableOpacity>
-                }
+                <View style={styles.buttonAndTimer}>
+                    <View style={styles.timerContainer}>
+                        <CountDown
+                            until={remaningTime}
+                            onFinish={() => alert('finished')}
+                            onPress={() => alert('hello')}
+                            size={12}
+                        />
+                         <Text style={styles.palceHolder}>Remaning Time</Text>
+                    </View>
+                    {type == "User" &&
+                        <TouchableOpacity style={styles.bidButton} onPress={() => bidNow(item)} >
+                            <Text style={styles.bidButtonText}>BID NOW</Text>
+                        </TouchableOpacity>
+                    }{type == "Guest" &&
+                        <TouchableOpacity style={[styles.bidButton, { backgroundColor: 'grey' }]} onPress={() => alertDisplay()} >
+                            <Text style={styles.bidButtonText}>BID NOW</Text>
+                        </TouchableOpacity>
+                    }
 
+                </View>
             </View>
-        </View>
-    );
+        )
+    };
 
     return (
         <FlatList data={data} renderItem={Card} keyExtractor={item => item.id} />
@@ -82,6 +93,7 @@ const styles = StyleSheet.create({
         shadowColor: "#000",
         elevation: 2,
         borderRadius: 10,
+        marginBottom:20
     },
     cardDetails: {
         flexDirection: 'row'
@@ -129,6 +141,7 @@ const styles = StyleSheet.create({
     itemDescription: {
         marginTop: 5,
         width: 200,
+        height:150,
         fontSize: 13,
         fontWeight: '500'
     },
@@ -138,7 +151,7 @@ const styles = StyleSheet.create({
         fontWeight: '100'
     },
     priceContainer: {
-        marginTop: 5,
+        marginTop: 20,
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
@@ -164,6 +177,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     timerContainer: {
+        marginTop:11,
+        height:100,
         width: 150,
         justifyContent: 'center',
         alignItems: 'center'
@@ -180,7 +195,8 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
         margin: 10,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center', 
+        marginBottom: 20
     },
     bidButtonText: {
         fontWeight: 'bold',

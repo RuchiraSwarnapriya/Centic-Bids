@@ -13,10 +13,10 @@ export const fetchItems = () => {
     return async (dispatch) => {
         try {
             dispatch(getAuctionItems());
-
+           
             const response = await fetchAuctionItems();
 
-            dispatch(setAuctionItems(response.data || {}));
+            dispatch(setAuctionItems(response || {}));
             return true;
         } catch (e) {
             dispatch(setAuctionItems({}));

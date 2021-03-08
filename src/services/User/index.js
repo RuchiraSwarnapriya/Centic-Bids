@@ -18,6 +18,7 @@ export const fetchUserDeatils = (uid) => {
 };
 
 //update fcm token when user login diffrent device
-export const updateFcmToken = (uid, token) => {
+export const updateFcmToken = () => {
+
 
 };

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, Alert } from 'react-native'
 import Header from "../../components/appHeader/Header"
 import { fetchItems } from '../../redux/actions/auctionItem'
+import { updateItemDetails } from "../../services/auctionItems";
 import { HOME } from '../../navigation/routes/route_paths'
 import { useDispatch } from 'react-redux'
 
@@ -10,7 +11,7 @@ const BiddingScreen = ({ route, navigation }) => {
 
     const dispatch = useDispatch();
 
-    const { title, description, basePrice, currentBid, timer, fcmToken } = route.params;
+    const { title, description, basePrice, currentBid, expTime, fcmToken } = route.params;
 
     const [CurrentBid, setCurrentBid] = useState(currentBid)
 
@@ -45,6 +46,8 @@ const BiddingScreen = ({ route, navigation }) => {
 
     const placeBid = () => {
         setCurrentBid(MyBid);
+        console.log(MyBid)
+        updateItemDetails("001", MyBid);
         dispatch(fetchItems());
         navigation.navigate(HOME);
     }
@@ -57,11 +60,11 @@ const BiddingScreen = ({ route, navigation }) => {
                 <Text style={styles.placeHolder}>Current Bid</Text>
                 <View style={styles.detailContainer}>
                     <View>
-                        <Text style={styles.timer}>{timer}</Text>
+                        <Text style={styles.timer}>{expTime}</Text>
                         <Text style={[styles.placeHolder, { fontSize: 12 }]}>Remaining Time</Text>
                     </View>
                     <View>
-                        <Text style={styles.timer}>{basePrice}</Text>
+                        <Text style={styles.timer}>{basePrice}$</Text>
                         <Text style={[styles.placeHolder, { fontSize: 12 }]}>Base Price</Text>
                     </View>
                 </View>
