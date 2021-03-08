@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { BIDDING } from '../../navigation/routes/route_paths';
 import CountDown from 'react-native-countdown-component';
-import Swiper from 'react-native-swiper';
+import ImageSlider from "../imageSlider/ImageSlider";
+import CountDowner from "../countDowner/CountDowner";
 
 const FlatlistView = ({ navigation, data, type, }) => {
 
@@ -14,9 +15,19 @@ const FlatlistView = ({ navigation, data, type, }) => {
         expTime: item.expTime.seconds,
     });
 
+    const [BidButtonStatus, setBidButtonStatus] = useState(true);
+
     const alertDisplay = () => {
         alert('For Place a BID, You have to Log !');
-    }
+    };
+
+    const timeOver = () => {
+        setBidButtonStatus(false)
+    };
+
+    const bidOver = () => {
+        alert('You cannot place a bid for this item at the moment now');
+    };
 
     const Card = ({ item }) => {
 
@@ -30,27 +41,7 @@ const FlatlistView = ({ navigation, data, type, }) => {
             <View style={styles.card}>
                 <View style={styles.cardDetails}>
                     <View style={styles.carouselContainer}>
-                        <Swiper autoplayTimeout={3}
-                            style={styles.wrapper}
-                            showsButtons={false}
-                            loadMinimal={true}
-                            showsPagination={true}
-                            paginationStyle={styles.paginationStyle}
-                            activeDotStyle={styles.activeDotStyle}
-                            dotStyle={styles.dotStyle}
-                            loop={true} autoplay={true}
-                        >
-                            {/* map image from database */}
-                            {item.images.map((data, index) => {
-                                return (
-                                    <View key={index} style={styles.slide1}>
-                                        <Image style={styles.itemImage}
-                                            source={{ uri: data }}
-                                        />
-                                    </View>
-                                )
-                            })}
-                        </Swiper>
+                        <ImageSlider images={item.images} />
                     </View>
                     <View style={styles.itemDetails}>
                         <Text style={styles.itemTitle}>{item.title}</Text>
@@ -69,14 +60,14 @@ const FlatlistView = ({ navigation, data, type, }) => {
                 </View>
                 <View style={styles.buttonAndTimer}>
                     <View style={styles.timerContainer}>
-                        <CountDown
-                            until={remaningTime}
-                            onFinish={() => alert('finished')}
-                            onPress={() => alert('hello')}
-                            size={12}
-                        />
+                        <CountDowner remaningTime={remaningTime} onFinish={timeOver} size={12} />
                         <Text style={styles.palceHolder}>Remaning Time</Text>
                     </View>
+                    {BidButtonStatus == false &&
+                        <TouchableOpacity style={styles.bidButton} onPress={() => bidOver()} >
+                            <Text style={styles.bidButtonText}>BID NOW</Text>
+                        </TouchableOpacity>
+                    }
                     {type == "User" &&
                         <TouchableOpacity style={styles.bidButton} onPress={() => bidNow(item)} >
                             <Text style={styles.bidButtonText}>BID NOW</Text>
@@ -116,7 +107,7 @@ const styles = StyleSheet.create({
         height: 150,
         width: 150,
     },
-    slide1: {
+    slider: {
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -141,7 +132,7 @@ const styles = StyleSheet.create({
         margin: 15,
         width: 120,
         height: 120,
-        borderRadius:5
+        borderRadius: 5
     },
     itemDetails: {
         margin: 10
@@ -178,10 +169,12 @@ const styles = StyleSheet.create({
     bidPrice: {
         fontSize: 22,
         fontWeight: 'bold',
+        color: "black"
     },
     palceHolder: {
         fontSize: 12,
-        fontWeight: 'normal',
+        fontWeight: 'bold',
+        color: 'grey'
     },
     buttonAndTimer: {
         flexDirection: 'row',

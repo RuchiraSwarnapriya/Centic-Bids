@@ -5,10 +5,11 @@ import { fetchItems } from '../../redux/actions/auctionItem';
 import { updateItemDetails } from "../../services/auctionItems";
 import { HOME } from '../../navigation/routes/route_paths';
 import { useDispatch, useSelector } from 'react-redux';
+import CountDown from 'react-native-countdown-component';
 
 
 const BiddingScreen = ({ route, navigation }) => {
-    
+
     const { title, description, basePrice, currentBid, expTime } = route.params;
 
     const dispatch = useDispatch();
@@ -20,6 +21,10 @@ const BiddingScreen = ({ route, navigation }) => {
     const fcmToken = useSelector(({ currentUser }) => currentUser.user.fcmToken);
 
     const bidderID = useSelector(({ currentUser }) => currentUser.user.id);
+
+    const currentTime = new Date().getTime() / 1000;
+
+    const remaningTime = expTime - currentTime
 
     const verifyBid = () => {
 
@@ -60,15 +65,21 @@ const BiddingScreen = ({ route, navigation }) => {
             <View style={styles.container}>
                 <Text style={styles.currentBid}>{CurrentBid}$</Text>
                 <Text style={styles.placeHolder}>Current Bid</Text>
+                <View style={styles.timerContainer}>
+                    <CountDown
+                        until={remaningTime}
+                        onFinish={() => alert('finished')}
+                        onPress={() => alert('hello')}
+                        size={15}
+                    />
+                    <Text style={[styles.placeHolder, { fontSize: 12 }]}>Remaining Time</Text>
+                </View>
                 <View style={styles.detailContainer}>
-                    <View>
-                        <Text style={styles.timer}>{expTime}</Text>
-                        <Text style={[styles.placeHolder, { fontSize: 12 }]}>Remaining Time</Text>
-                    </View>
-                    <View>
+
+                    {/* <View>
                         <Text style={styles.timer}>{basePrice}$</Text>
                         <Text style={[styles.placeHolder, { fontSize: 12 }]}>Base Price</Text>
-                    </View>
+                    </View> */}
                 </View>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.description}>{description}</Text>
@@ -103,10 +114,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'grey'
     },
-    detailContainer: {
-        marginTop: 10,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+    timerContainer: {
+        marginTop: 20,
+        alignItems: 'center'
     },
     timer: {
         textAlign: 'center',
@@ -116,7 +126,7 @@ const styles = StyleSheet.create({
     title: {
         marginTop: 15,
         textAlign: 'center',
-        fontSize: 18,
+        fontSize: 25,
         fontWeight: 'bold',
         color: 'black'
     },
