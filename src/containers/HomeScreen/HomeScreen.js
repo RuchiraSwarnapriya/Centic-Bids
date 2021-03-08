@@ -1,10 +1,11 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { fetchItems } from '../../redux/actions/auctionItem';
 import { fetchUser } from '../../redux/actions/user';
 import { useDispatch, useSelector } from 'react-redux';
 import FlatListView from "../../components/flatListView/FlatlistView";
 import auth from '@react-native-firebase/auth';
+import Loader from "../../components/loader/Loader";
 
 
 
@@ -14,6 +15,8 @@ const HomeScreen = ({ navigation }) => {
 
     const uid = user.uid;
 
+    const [IsLoading, setIsLoading] = useState(true);
+
     const dispatch = useDispatch();
 
     const fetchInitialData = useCallback(async () => {
@@ -22,7 +25,9 @@ const HomeScreen = ({ navigation }) => {
     }, [dispatch]);
 
     useEffect(() => {
+        setIsLoading(true);
         fetchInitialData();
+        setIsLoading(false);
     }, [fetchInitialData]);
 
     const auctionItemDetails = useSelector(({ auctionItems }) => auctionItems.items);
@@ -30,7 +35,11 @@ const HomeScreen = ({ navigation }) => {
     return (
         <View style={styles.main}>
             <Text style={styles.title}>Ongoing Bids</Text>
-            <FlatListView navigation={navigation} data={auctionItemDetails} type="User" />
+            {IsLoading ?
+                <Loader />
+                :
+                <FlatListView navigation={navigation} data={auctionItemDetails} type="User" />
+            }
         </View>
     )
 }
