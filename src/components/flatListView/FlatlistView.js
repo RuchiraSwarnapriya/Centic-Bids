@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { BIDDING } from '../../navigation/routes/route_paths';
-import CountDown from 'react-native-countdown-component';
 import ImageSlider from "../imageSlider/ImageSlider";
 import CountDowner from "../countDowner/CountDowner";
 
@@ -77,7 +76,6 @@ const FlatlistView = ({ navigation, data, type, }) => {
                             <Text style={styles.bidButtonText}>BID NOW</Text>
                         </TouchableOpacity>
                     }
-
                 </View>
             </View>
         )
