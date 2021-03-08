@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { BIDDING } from '../../navigation/routes/route_paths';
 import ImageSlider from "../imageSlider/ImageSlider";
 import CountDowner from "../countDowner/CountDowner";
 
 const FlatlistView = ({ navigation, data, type, }) => {
+
+    useEffect(() => {
+       setCurrentTime( new Date());
+    }, [])
+
+
+    const [CurrentTime, setCurrentTime] = useState();
 
     const bidNow = (item) => navigation.navigate(BIDDING, {
         title: item.title,
@@ -17,7 +24,7 @@ const FlatlistView = ({ navigation, data, type, }) => {
     const [BidButtonStatus, setBidButtonStatus] = useState(true);
 
     const alertDisplay = () => {
-        alert('For Place a BID, You have to Log !');
+        alert('For Place a BID, You have to Regsiter, Please Register');
     };
 
     const timeOver = () => {
@@ -32,9 +39,9 @@ const FlatlistView = ({ navigation, data, type, }) => {
 
     const Card = ({ item }) => {
 
-        const expTime = item.expTime.seconds
+        const expTime = item.expTime.seconds;
 
-        const currentTime = new Date().getTime() / 1000;
+        const currentTime = CurrentTime.getTime()/1000;
 
         const remaningTime = expTime - currentTime
 
@@ -64,15 +71,16 @@ const FlatlistView = ({ navigation, data, type, }) => {
                         <CountDowner remaningTime={remaningTime} onFinish={timeOver} size={12} />
                         <Text style={styles.palceHolder}>Remaning Time</Text>
                     </View>
-                    {type == "User" && BidButtonStatus ?
+                    {type == "User" &&
                         < TouchableOpacity style={styles.bidButton} onPress={() => bidNow(item)} >
-                            <Text style={styles.bidButtonText}>BID NOW</Text>
-                        </TouchableOpacity> :
-                        < TouchableOpacity style={styles.bidButton} onPress={() => bidOver()} >
                             <Text style={styles.bidButtonText}>BID NOW</Text>
                         </TouchableOpacity>
                     }{type == "Guest" &&
                         <TouchableOpacity style={[styles.bidButton, { backgroundColor: 'grey' }]} onPress={() => alertDisplay()} >
+                            <Text style={styles.bidButtonText}>BID NOW</Text>
+                        </TouchableOpacity>
+                    }{BidButtonStatus == false &&
+                        <TouchableOpacity style={[styles.bidButton, { backgroundColor: 'grey' }]} onPress={() => bidOver()} >
                             <Text style={styles.bidButtonText}>BID NOW</Text>
                         </TouchableOpacity>
                     }
