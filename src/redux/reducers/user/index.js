@@ -11,7 +11,6 @@ const userReducer = (state = userInitialState, action) => {
         case GET_USER_DETAILS:
             return {...state, isFetchingItems: true};
         case SET_USER_DETAILS:
-            console.log(action.payload)
             return {...state, isFetchingItems: false, user: action.payload};
         default:
             return state;
