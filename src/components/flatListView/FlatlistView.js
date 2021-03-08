@@ -105,33 +105,6 @@ const styles = StyleSheet.create({
         height: 150,
         width: 150,
     },
-    slider: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    activeDotStyle: {
-        width: 8,
-        height: 8,
-        borderRadius: 4,
-        backgroundColor: '#004E94'
-    },
-    dotStyle: {
-        width: 5,
-        height: 5,
-        borderRadius: 2.5,
-        backgroundColor: '#A5A5A7'
-    },
-    paginationStyle: {
-        bottom: -8
-    },
-    itemImage: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: 15,
-        width: 120,
-        height: 120,
-        borderRadius: 5
-    },
     itemDetails: {
         margin: 10
     },
