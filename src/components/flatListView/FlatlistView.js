@@ -6,13 +6,6 @@ import CountDowner from "../countDowner/CountDowner";
 
 const FlatlistView = ({ navigation, data, type, }) => {
 
-    useEffect(() => {
-       setCurrentTime( new Date());
-    }, [])
-
-
-    const [CurrentTime, setCurrentTime] = useState();
-
     const bidNow = (item) => navigation.navigate(BIDDING, {
         title: item.title,
         description: item.description,
@@ -41,7 +34,7 @@ const FlatlistView = ({ navigation, data, type, }) => {
 
         const expTime = item.expTime.seconds;
 
-        const currentTime = CurrentTime.getTime()/1000;
+        const currentTime = new Date().getTime()/1000;
 
         const remaningTime = expTime - currentTime
 
