@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native'
-import NoPreViewImage from '../../assets/images/no_preview.png';
 import { BIDDING } from '../../navigation/routes/route_paths';
 import CountDown from 'react-native-countdown-component';
+import Swiper from 'react-native-swiper';
 
 const FlatlistView = ({ navigation, data, type, }) => {
 
@@ -21,7 +21,7 @@ const FlatlistView = ({ navigation, data, type, }) => {
     const Card = ({ item }) => {
 
         const expTime = item.expTime.seconds
-       
+
         const currentTime = new Date().getTime() / 1000;
 
         const remaningTime = expTime - currentTime
@@ -30,14 +30,27 @@ const FlatlistView = ({ navigation, data, type, }) => {
             <View style={styles.card}>
                 <View style={styles.cardDetails}>
                     <View style={styles.carouselContainer}>
-                        <Image style={styles.itemImage}
-                            source={{
-                                uri: 'https://reactnative.dev/img/tiny_logo.png',
-                            }}
-                        />
-                        <Image style={styles.itemImage}
-                            source={NoPreViewImage}
-                        />
+                        <Swiper autoplayTimeout={3}
+                            style={styles.wrapper}
+                            showsButtons={false}
+                            loadMinimal={true}
+                            showsPagination={true}
+                            paginationStyle={styles.paginationStyle}
+                            activeDotStyle={styles.activeDotStyle}
+                            dotStyle={styles.dotStyle}
+                            loop={true} autoplay={true}
+                        >
+                            {/* map image from database */}
+                            {item.images.map((data, index) => {
+                                return (
+                                    <View key={index} style={styles.slide1}>
+                                        <Image style={styles.itemImage}
+                                            source={{ uri: data }}
+                                        />
+                                    </View>
+                                )
+                            })}
+                        </Swiper>
                     </View>
                     <View style={styles.itemDetails}>
                         <Text style={styles.itemTitle}>{item.title}</Text>
@@ -62,7 +75,7 @@ const FlatlistView = ({ navigation, data, type, }) => {
                             onPress={() => alert('hello')}
                             size={12}
                         />
-                         <Text style={styles.palceHolder}>Remaning Time</Text>
+                        <Text style={styles.palceHolder}>Remaning Time</Text>
                     </View>
                     {type == "User" &&
                         <TouchableOpacity style={styles.bidButton} onPress={() => bidNow(item)} >
@@ -92,7 +105,7 @@ const styles = StyleSheet.create({
         shadowColor: "#000",
         elevation: 2,
         borderRadius: 10,
-        marginBottom:20
+        marginBottom: 20
     },
     cardDetails: {
         flexDirection: 'row'
@@ -100,34 +113,35 @@ const styles = StyleSheet.create({
     carouselContainer: {
         position: 'relative',
         top: 10,
+        height: 150,
         width: 150,
-        height: 250,
     },
     slide1: {
         justifyContent: 'center',
         alignItems: 'center',
     },
     activeDotStyle: {
-        width: 10,
-        height: 10,
-        borderRadius: 5,
+        width: 8,
+        height: 8,
+        borderRadius: 4,
         backgroundColor: '#004E94'
     },
     dotStyle: {
-        width: 7,
-        height: 7,
-        borderRadius: 3.5,
+        width: 5,
+        height: 5,
+        borderRadius: 2.5,
         backgroundColor: '#A5A5A7'
     },
     paginationStyle: {
-
+        bottom: -8
     },
     itemImage: {
         alignItems: 'center',
         justifyContent: 'center',
         margin: 15,
         width: 120,
-        height: 100
+        height: 120,
+        borderRadius:5
     },
     itemDetails: {
         margin: 10
@@ -140,7 +154,6 @@ const styles = StyleSheet.create({
     itemDescription: {
         marginTop: 5,
         width: 200,
-        height:150,
         fontSize: 13,
         fontWeight: '500'
     },
@@ -176,11 +189,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     timerContainer: {
-        marginTop:11,
-        height:100,
+        marginTop: 30,
+        marginBottom: 15,
         width: 150,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     timer: {
         fontSize: 15,
@@ -194,7 +207,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
         margin: 10,
         justifyContent: 'center',
-        alignItems: 'center', 
+        alignItems: 'center',
         marginBottom: 20
     },
     bidButtonText: {
