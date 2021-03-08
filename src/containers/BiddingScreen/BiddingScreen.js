@@ -100,8 +100,6 @@ const BiddingScreen = ({ route, navigation }) => {
             </View>
         </SafeAreaView>
     )
-
-
 }
 
 const styles = StyleSheet.create({
