@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, RefreshControl } from 'react-native';
 import { fetchItems } from '../../redux/actions/auctionItem';
 import { fetchUser } from '../../redux/actions/user';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,7 +15,7 @@ const HomeScreen = ({ navigation }) => {
 
     const uid = user.uid;
 
-    const [IsLoading, setIsLoading] = useState(true);
+    const [IsLoading, setIsLoading] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -29,6 +29,7 @@ const HomeScreen = ({ navigation }) => {
         fetchInitialData();
         setIsLoading(false);
     }, [fetchInitialData]);
+
 
     const auctionItemDetails = useSelector(({ auctionItems }) => auctionItems.items);
 
