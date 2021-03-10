@@ -10,10 +10,21 @@ const GuestHomeScreen = ({ navigation }) => {
 
     const dispatch = useDispatch();
 
+    const [IsRefreshing, setIsRefreshing] = useState(false);
+
+    const [Time, setTime] = useState(new Date());
+
+    const refreshTime = () => {
+        setIsRefreshing(true);
+        fetchInitialData();
+        setIsRefreshing(false);
+    };
+
     const [IsLoading, setIsLoading] = useState(true);
 
     const fetchInitialData = useCallback(async () => {
         await dispatch(fetchItems());
+        setTime(new Date());
     }, [dispatch]);
 
     useEffect(() => {
@@ -30,7 +41,7 @@ const GuestHomeScreen = ({ navigation }) => {
             { IsLoading ?
                 <Loader />
                 :
-                <FlatListView navigation={navigation} data={auctionItemDetails} type="Guest" />
+                <FlatListView navigation={navigation} data={auctionItemDetails} type="Guest" IsRefreshing={IsRefreshing} onRefresh={refreshTime} Time={Time}/>
             }
         </View>
     )
