@@ -19,9 +19,20 @@ const HomeScreen = ({ navigation }) => {
 
     const dispatch = useDispatch();
 
+    const [IsRefreshing, setIsRefreshing] = useState(false);
+
+    const [Time, setTime] = useState(new Date());
+
+    const refreshTime = () => {
+        setIsRefreshing(true);
+        fetchInitialData();
+        setIsRefreshing(false);
+    };
+
     const fetchInitialData = useCallback(async () => {
         await dispatch(fetchItems());
         await dispatch(fetchUser(uid));
+        setTime(new Date());
     }, [dispatch]);
 
     useEffect(() => {
@@ -39,7 +50,7 @@ const HomeScreen = ({ navigation }) => {
             {IsLoading ?
                 <Loader />
                 :
-                <FlatListView navigation={navigation} data={auctionItemDetails} type="User" />
+                <FlatListView navigation={navigation} data={auctionItemDetails} type="User" IsRefreshing={IsRefreshing} onRefresh={refreshTime} Time={Time} />
             }
         </View>
     )

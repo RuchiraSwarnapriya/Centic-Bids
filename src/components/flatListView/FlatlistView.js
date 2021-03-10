@@ -4,19 +4,7 @@ import { BIDDING } from '../../navigation/routes/route_paths';
 import ImageSlider from "../imageSlider/ImageSlider";
 import CountDowner from "../countDowner/CountDowner";
 
-const FlatlistView = ({ navigation, data, type, }) => {
-
-    useEffect(() => {
-        setTime(new Date());
-    }, [])
-
-    const [IsRefreshing, setIsRefreshing] = useState(false);
-
-    const refreshTime = () => {
-        setIsRefreshing(true);
-        setTime(new Date());
-        setIsRefreshing(false);
-    };
+const FlatlistView = ({ navigation, data, type, IsRefreshing, onRefresh, Time }) => {
 
     const bidNow = (item) => navigation.navigate(BIDDING, {
         title: item.title,
@@ -26,7 +14,7 @@ const FlatlistView = ({ navigation, data, type, }) => {
         expTime: item.expTime.seconds,
     });
 
-    const [Time, setTime] = useState(new Date());
+    const cTime = Time;
 
     const alertDisplay = () => {
         alert('For Place a BID, You have to Regsiter, Please Register');
@@ -40,7 +28,7 @@ const FlatlistView = ({ navigation, data, type, }) => {
 
         const expTime = item.expTime.seconds;
 
-        const currentTime = Time.getTime() / 1000;
+        const currentTime = cTime.getTime() / 1000;
 
         const remaningTime = expTime - currentTime;
 
@@ -89,7 +77,7 @@ const FlatlistView = ({ navigation, data, type, }) => {
     };
 
     return (
-        <FlatList data={data} renderItem={Card} keyExtractor={item => item.id} refreshControl={<RefreshControl refreshing={IsRefreshing} onRefresh={refreshTime} />} />
+        <FlatList data={data} renderItem={Card} keyExtractor={item => item.id} refreshControl={<RefreshControl refreshing={IsRefreshing} onRefresh={onRefresh} />} />
     )
 }
 
