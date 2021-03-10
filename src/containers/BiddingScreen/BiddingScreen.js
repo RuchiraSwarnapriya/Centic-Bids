@@ -16,8 +16,6 @@ const BiddingScreen = ({ route, navigation }) => {
 
     const [CurrentBid, setCurrentBid] = useState(currentBid);
 
-    const [BidButtonStatus, setBidButtonStatus] = useState(true);
-
     const [MyBid, setMyBid] = useState('');
 
     const fcmToken = useSelector(({ currentUser }) => currentUser.user.fcmToken);
@@ -26,11 +24,7 @@ const BiddingScreen = ({ route, navigation }) => {
 
     const currentTime = new Date().getTime() / 1000;
 
-    const remaningTime = expTime - currentTime
-
-    const timeOver = () => {
-        setBidButtonStatus(false)
-    };
+    const remaningTime = expTime - currentTime;
 
     const bidOver = () => {
         alert('You cannot place a bid for this item at the moment now because time is over ');
@@ -76,7 +70,7 @@ const BiddingScreen = ({ route, navigation }) => {
                 <Text style={styles.currentBid}>{CurrentBid}$</Text>
                 <Text style={styles.placeHolder}>Current Bid</Text>
                 <View style={styles.timerContainer}>
-                    <CountDowner remaningTime={remaningTime} onFinish={timeOver} size={15} />
+                    <CountDowner remaningTime={remaningTime} size={15} />
                     <Text style={[styles.placeHolder, { fontSize: 12 }]}>Remaining Time</Text>
                 </View>
                 <View style={styles.detailContainer}>
@@ -89,13 +83,14 @@ const BiddingScreen = ({ route, navigation }) => {
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.description}>{description}</Text>
                 <TextInput style={styles.textInput} placeholder="Place your bid here" keyboardType='numeric' onChangeText={value => setMyBid(value)} />
-                {BidButtonStatus ?
-                    <TouchableOpacity style={styles.bidButton} onPress={() => verifyBid()}>
-                        <Text style={styles.bidButtonText}>PLACE BID</Text>
-                    </TouchableOpacity> :
+                {remaningTime <= 0 ?
                     <TouchableOpacity style={styles.bidButton} onPress={() => bidOver()}>
                         <Text style={styles.bidButtonText}>PLACE BID</Text>
+                    </TouchableOpacity> :
+                    <TouchableOpacity style={styles.bidButton} onPress={() => verifyBid()}>
+                        <Text style={styles.bidButtonText}>PLACE BID</Text>
                     </TouchableOpacity>
+
                 }
             </View>
         </SafeAreaView>

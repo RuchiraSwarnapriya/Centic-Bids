@@ -7,14 +7,14 @@ import CountDowner from "../countDowner/CountDowner";
 const FlatlistView = ({ navigation, data, type, }) => {
 
     useEffect(() => {
-      setTime(new Date());
-    },[] )
+        setTime(new Date());
+    }, [])
 
     const [IsRefreshing, setIsRefreshing] = useState(false);
 
     const refreshTime = () => {
         setIsRefreshing(true);
-        setTime(new Date ());
+        setTime(new Date());
         setIsRefreshing(false);
     };
 
@@ -26,31 +26,23 @@ const FlatlistView = ({ navigation, data, type, }) => {
         expTime: item.expTime.seconds,
     });
 
-    const [BidButtonStatus, setBidButtonStatus] = useState(true);
-
     const [Time, setTime] = useState(new Date());
 
     const alertDisplay = () => {
         alert('For Place a BID, You have to Regsiter, Please Register');
     };
 
-    const timeOver = () => {
-        setBidButtonStatus(false)
-    };
-
     const bidOver = () => {
         alert('You cannot place a bid for this item at the moment now because time is over ');
     };
-
-    console.log(BidButtonStatus)
 
     const Card = ({ item }) => {
 
         const expTime = item.expTime.seconds;
 
-        const currentTime = Time.getTime()/1000;
+        const currentTime = Time.getTime() / 1000;
 
-        const remaningTime = expTime - currentTime
+        const remaningTime = expTime - currentTime;
 
         return (
             <View style={styles.card}>
@@ -75,21 +67,21 @@ const FlatlistView = ({ navigation, data, type, }) => {
                 </View>
                 <View style={styles.buttonAndTimer}>
                     <View style={styles.timerContainer}>
-                        <CountDowner remaningTime={remaningTime} onFinish={timeOver} size={12} />
+                        <CountDowner remaningTime={remaningTime} size={12} />
                         <Text style={styles.palceHolder}>Remaning Time</Text>
                     </View>
-                    {type == "User" &&
-                        < TouchableOpacity style={styles.bidButton} onPress={() => bidNow(item)} >
-                            <Text style={styles.bidButtonText}>BID NOW</Text>
-                        </TouchableOpacity>
-                    }{type == "Guest" &&
-                        <TouchableOpacity style={[styles.bidButton, { backgroundColor: 'grey' }]} onPress={() => alertDisplay()} >
-                            <Text style={styles.bidButtonText}>BID NOW</Text>
-                        </TouchableOpacity>
-                    }{BidButtonStatus == false &&
+                    {remaningTime <= 0 ?
                         <TouchableOpacity style={[styles.bidButton, { backgroundColor: 'grey' }]} onPress={() => bidOver()} >
                             <Text style={styles.bidButtonText}>BID NOW</Text>
                         </TouchableOpacity>
+                        : type == "User" ?
+                            < TouchableOpacity style={styles.bidButton} onPress={() => bidNow(item)} >
+                                <Text style={styles.bidButtonText}>BID NOW</Text>
+                            </TouchableOpacity>
+                            :
+                            <TouchableOpacity style={[styles.bidButton, { backgroundColor: 'grey' }]} onPress={() => alertDisplay()} >
+                                <Text style={styles.bidButtonText}>BID NOW</Text>
+                            </TouchableOpacity>
                     }
                 </View>
             </View >
@@ -97,7 +89,7 @@ const FlatlistView = ({ navigation, data, type, }) => {
     };
 
     return (
-        <FlatList data={data} renderItem={Card} keyExtractor={item => item.id} refreshControl={<RefreshControl refreshing={IsRefreshing} onRefresh={refreshTime} />}/>
+        <FlatList data={data} renderItem={Card} keyExtractor={item => item.id} refreshControl={<RefreshControl refreshing={IsRefreshing} onRefresh={refreshTime} />} />
     )
 }
 
