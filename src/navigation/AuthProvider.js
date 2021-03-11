@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
                             // to get fcm toke check user persmission
                             messaging().requestPermission();
 
-                            //get fcm token and send it to firestore database
+                            //get fcm token and send it to firestore database and update fcm token when user sign in diffrent deivices
                             messaging().getToken().then(token => {
                                 updateFcmToken(uid, token);
                             });
