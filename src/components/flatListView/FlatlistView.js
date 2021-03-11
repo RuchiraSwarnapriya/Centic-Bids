@@ -13,6 +13,7 @@ const FlatlistView = ({ navigation, data, type, IsRefreshing, onRefresh, Time })
         basePrice: item.basePrice,
         currentBid: item.currentBid,
         expTime: item.expTime.seconds,
+        images: item.images
     });
 
     const cTime = Time;

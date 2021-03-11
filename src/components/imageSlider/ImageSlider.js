@@ -3,7 +3,7 @@ import Swiper from 'react-native-swiper';
 import { View, StyleSheet, Image } from 'react-native'
 
 
-const ImageSlider = ({images}) => {
+const ImageSlider = ({images, imageStyle}) => {
     return (
         <Swiper autoplayTimeout={5}
             style={styles.wrapper}
@@ -18,7 +18,7 @@ const ImageSlider = ({images}) => {
             {images.map((data, index) => {
                 return (
                     <View key={index} style={styles.slider}>
-                        <Image style={styles.itemImage} source={{ uri: data }} />
+                        <Image style={[styles.itemImage,{...imageStyle}]} source={{ uri: data }} />
                     </View>
                 )
             })}

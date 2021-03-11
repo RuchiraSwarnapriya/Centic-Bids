@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView } from 'react-native';
 import Header from "../../components/appHeader/Header";
 import { fetchItems } from '../../redux/actions/auctionItem';
 import { updateItemDetails } from "../../services/auctionItems";
 import { HOME } from '../../navigation/routes/route_paths';
 import { useDispatch, useSelector } from 'react-redux';
 import CountDowner from "../../components/countDowner/CountDowner";
+import ImageSlider from '../../components/imageSlider/ImageSlider';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 
 const BiddingScreen = ({ route, navigation }) => {
 
-    const { title, description, basePrice, currentBid, expTime } = route.params;
+    const { title, description, basePrice, currentBid, expTime, images } = route.params;
 
     const dispatch = useDispatch();
 
@@ -59,30 +61,34 @@ const BiddingScreen = ({ route, navigation }) => {
         setCurrentBid(MyBid);
         console.log(MyBid)
         updateItemDetails("001", MyBid, fcmToken, bidderID);
+        alert("You have successfully placed bid for this item");
         dispatch(fetchItems());
         navigation.navigate(HOME);
     };
 
     return (
         <SafeAreaView style={styles.main}>
-            <Header title="BID Here" navigation={navigation} />
-            <View style={styles.container}>
-                <Text style={styles.currentBid}>{CurrentBid}$</Text>
-                <Text style={styles.placeHolder}>Current Bid</Text>
+            <Header title={title} navigation={navigation} />
+            <KeyboardAwareScrollView  style={styles.container}>
+                <View style={styles.carouselContainer}>
+                    <ImageSlider images={images} imageStyle={styles.itemImage} />
+                </View>
+                <Text style={styles.description}>{description}</Text>
+                <View style={styles.detailContainer}>
+                    <View>
+                        <Text style={styles.currentBid}>{basePrice}$</Text>
+                        <Text style={[styles.placeHolder]}>Base Price</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.currentBid}>{CurrentBid}$</Text>
+                        <Text style={styles.placeHolder}>Current Bid</Text>
+                    </View>
+                </View>
                 <View style={styles.timerContainer}>
                     <CountDowner remaningTime={remaningTime} size={15} />
-                    <Text style={[styles.placeHolder, { fontSize: 12 }]}>Remaining Time</Text>
+                    <Text style={[styles.placeHolder]}>Remaining Time</Text>
                 </View>
-                <View style={styles.detailContainer}>
-
-                    {/* <View>
-                        <Text style={styles.timer}>{basePrice}$</Text>
-                        <Text style={[styles.placeHolder, { fontSize: 12 }]}>Base Price</Text>
-                    </View> */}
-                </View>
-                <Text style={styles.title}>{title}</Text>
-                <Text style={styles.description}>{description}</Text>
-                <TextInput style={styles.textInput} placeholder="Place your bid here" keyboardType='numeric' onChangeText={value => setMyBid(value)} />
+                <TextInput style={styles.textInput} placeholder="Place your Bid here" keyboardType='numeric' onChangeText={value => setMyBid(value)} />
                 {remaningTime <= 0 ?
                     <TouchableOpacity style={styles.bidButton} onPress={() => bidOver()}>
                         <Text style={styles.bidButtonText}>PLACE BID</Text>
@@ -90,54 +96,63 @@ const BiddingScreen = ({ route, navigation }) => {
                     <TouchableOpacity style={styles.bidButton} onPress={() => verifyBid()}>
                         <Text style={styles.bidButtonText}>PLACE BID</Text>
                     </TouchableOpacity>
-
                 }
-            </View>
+            </KeyboardAwareScrollView>
         </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     main: {
-        flex: 1
+        flex: 1,
+        backgroundColor: "#FFFFFF"
     },
     container: {
         flex: 1,
         marginHorizontal: 16,
+        marginBottom:10
+    },
+    carouselContainer: {
+        alignSelf: 'center',
+        position: 'relative',
+        top: 10,
+        height: 200,
+        width: 350,
+    },
+    itemImage: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 15,
+        width: 330,
+        height: 150,
+        borderRadius: 5
+    },
+    description: {
+        marginTop: 30,
+        fontSize: 15,
+        color: 'black',
+        textAlign: 'center'
+    },
+    detailContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'baseline'
     },
     currentBid: {
         marginTop: 20,
         textAlign: 'center',
-        fontSize: 50,
+        fontSize: 30,
         fontWeight: 'bold'
     },
     placeHolder: {
         textAlign: 'center',
-        fontSize: 15,
+        fontSize: 12,
         fontWeight: 'bold',
         color: 'grey'
     },
     timerContainer: {
-        marginTop: 20,
+        marginTop: -35,
         alignItems: 'center'
-    },
-    timer: {
-        textAlign: 'center',
-        fontSize: 25,
-        fontWeight: 'bold',
-    },
-    title: {
-        marginTop: 15,
-        textAlign: 'center',
-        fontSize: 25,
-        fontWeight: 'bold',
-        color: 'black'
-    },
-    description: {
-        textAlign: 'center',
-        marginTop: 10,
-        fontSize: 14,
-        color: 'black'
     },
     separator: {
         marginVertical: 8,
@@ -148,7 +163,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         width: 300,
         textAlign: 'center',
-        marginTop: 20,
+        marginTop: 30,
         borderBottomColor: 'grey',
         borderBottomWidth: 1,
         fontSize: 25,
