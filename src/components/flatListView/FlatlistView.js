@@ -114,7 +114,8 @@ const styles = StyleSheet.create({
         marginTop: 5,
         width: 200,
         fontSize: 13,
-        fontWeight: '500'
+        fontWeight: '500',
+        minHeight:70,
     },
     timer: {
         marginTop: 5,
@@ -150,7 +151,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     timerContainer: {
-        marginTop: 30,
         marginBottom: 15,
         width: 150,
         justifyContent: 'center',
