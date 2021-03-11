@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, Alert } from 'react-native';
 import Header from "../../components/appHeader/Header";
 import { fetchItems } from '../../redux/actions/auctionItem';
 import { updateItemDetails } from "../../services/auctionItems";
@@ -69,7 +69,7 @@ const BiddingScreen = ({ route, navigation }) => {
     return (
         <SafeAreaView style={styles.main}>
             <Header title={title} navigation={navigation} />
-            <KeyboardAwareScrollView  style={styles.container}>
+            <KeyboardAwareScrollView style={styles.container}>
                 <View style={styles.carouselContainer}>
                     <ImageSlider images={images} imageStyle={styles.itemImage} />
                 </View>
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginHorizontal: 16,
-        marginBottom:10
+        marginBottom: 10
     },
     carouselContainer: {
         alignSelf: 'center',
