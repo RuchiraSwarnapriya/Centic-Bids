@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
                                 updateFcmToken(uid, token);
                             });
 
-                        }). catch(error => {
+                        }).catch(error => {
                             alert(error.message);
                         });
                     } catch (e) {
@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
                                 registerUser(uid, email, token);
                             });
 
-                        }). catch(error => {
+                        }).catch(error => {
                             alert(error.message);
                         });
                     } catch (e) {

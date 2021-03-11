@@ -6,6 +6,7 @@ import CountDowner from "../countDowner/CountDowner";
 
 const FlatlistView = ({ navigation, data, type, IsRefreshing, onRefresh, Time }) => {
 
+
     const bidNow = (item) => navigation.navigate(BIDDING, {
         title: item.title,
         description: item.description,

@@ -1,0 +1,539 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`init renders correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginLeft": 15,
+        "marginRight": 30,
+        "marginTop": 15,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontSize": 45,
+            },
+            undefined,
+            Object {
+              "fontFamily": "Ionicons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {},
+          ]
+        }
+      >
+        
+      </Text>
+    </View>
+    <Text
+      style={
+        Object {
+          "fontSize": 25,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      BID Here
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "marginHorizontal": 16,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 50,
+          "fontWeight": "bold",
+          "marginTop": 20,
+          "textAlign": "center",
+        }
+      }
+    >
+      whatever-id
+      $
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "grey",
+          "fontSize": 15,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      Current Bid
+    </Text>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "marginTop": 20,
+        }
+      }
+    >
+      <View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 5,
+                      "justifyContent": "center",
+                      "marginHorizontal": 2,
+                    },
+                    Object {
+                      "height": 39,
+                      "width": 34.5,
+                    },
+                    Object {
+                      "backgroundColor": "#FAB913",
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontVariant": Array [
+                          "tabular-nums",
+                        ],
+                        "fontWeight": "bold",
+                      },
+                      Object {
+                        "fontSize": 15,
+                      },
+                      Object {
+                        "color": "#000",
+                      },
+                    ]
+                  }
+                >
+                  -NaN
+                </Text>
+              </View>
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "color": "white",
+                    "marginVertical": 2,
+                  },
+                  Object {
+                    "fontSize": 8.333333333333334,
+                  },
+                  Object {
+                    "color": "#000",
+                  },
+                ]
+              }
+            >
+              Days
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 5,
+                      "justifyContent": "center",
+                      "marginHorizontal": 2,
+                    },
+                    Object {
+                      "height": 39,
+                      "width": 34.5,
+                    },
+                    Object {
+                      "backgroundColor": "#FAB913",
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontVariant": Array [
+                          "tabular-nums",
+                        ],
+                        "fontWeight": "bold",
+                      },
+                      Object {
+                        "fontSize": 15,
+                      },
+                      Object {
+                        "color": "#000",
+                      },
+                    ]
+                  }
+                >
+                  -NaN
+                </Text>
+              </View>
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "color": "white",
+                    "marginVertical": 2,
+                  },
+                  Object {
+                    "fontSize": 8.333333333333334,
+                  },
+                  Object {
+                    "color": "#000",
+                  },
+                ]
+              }
+            >
+              Hours
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 5,
+                      "justifyContent": "center",
+                      "marginHorizontal": 2,
+                    },
+                    Object {
+                      "height": 39,
+                      "width": 34.5,
+                    },
+                    Object {
+                      "backgroundColor": "#FAB913",
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontVariant": Array [
+                          "tabular-nums",
+                        ],
+                        "fontWeight": "bold",
+                      },
+                      Object {
+                        "fontSize": 15,
+                      },
+                      Object {
+                        "color": "#000",
+                      },
+                    ]
+                  }
+                >
+                  -NaN
+                </Text>
+              </View>
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "color": "white",
+                    "marginVertical": 2,
+                  },
+                  Object {
+                    "fontSize": 8.333333333333334,
+                  },
+                  Object {
+                    "color": "#000",
+                  },
+                ]
+              }
+            >
+              Minutes
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 5,
+                      "justifyContent": "center",
+                      "marginHorizontal": 2,
+                    },
+                    Object {
+                      "height": 39,
+                      "width": 34.5,
+                    },
+                    Object {
+                      "backgroundColor": "#FAB913",
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontVariant": Array [
+                          "tabular-nums",
+                        ],
+                        "fontWeight": "bold",
+                      },
+                      Object {
+                        "fontSize": 15,
+                      },
+                      Object {
+                        "color": "#000",
+                      },
+                    ]
+                  }
+                >
+                  -NaN
+                </Text>
+              </View>
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "color": "white",
+                    "marginVertical": 2,
+                  },
+                  Object {
+                    "fontSize": 8.333333333333334,
+                  },
+                  Object {
+                    "color": "#000",
+                  },
+                ]
+              }
+            >
+              Seconds
+            </Text>
+          </View>
+        </View>
+      </View>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "grey",
+              "fontSize": 15,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            },
+            Object {
+              "fontSize": 12,
+            },
+          ]
+        }
+      >
+        Remaining Time
+      </Text>
+    </View>
+    <View />
+    <Text
+      style={
+        Object {
+          "color": "black",
+          "fontSize": 25,
+          "fontWeight": "bold",
+          "marginTop": 15,
+          "textAlign": "center",
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "black",
+          "fontSize": 14,
+          "marginTop": 10,
+          "textAlign": "center",
+        }
+      }
+    >
+      test-desc
+    </Text>
+    <TextInput
+      allowFontScaling={true}
+      keyboardType="numeric"
+      onChangeText={[Function]}
+      placeholder="Place your bid here"
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "alignSelf": "center",
+          "borderBottomColor": "grey",
+          "borderBottomWidth": 1,
+          "fontSize": 25,
+          "fontWeight": "bold",
+          "marginTop": 20,
+          "textAlign": "center",
+          "width": 300,
+        }
+      }
+      underlineColorAndroid="transparent"
+    />
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "alignSelf": "center",
+          "backgroundColor": "green",
+          "height": 40,
+          "justifyContent": "center",
+          "marginTop": 40,
+          "opacity": 1,
+          "width": 300,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "white",
+            "fontSize": 15,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        PLACE BID
+      </Text>
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;

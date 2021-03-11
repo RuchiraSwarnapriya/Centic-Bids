@@ -4,6 +4,7 @@ import { EMAIL_VALIDATE_REGEX } from '../../utils/constants';
 import Header from '../appHeader/Header';
 import { AuthContext } from '../../navigation/AuthProvider';
 import { LOGIN, REGISTER } from '../../navigation/routes/route_paths';
+import PropTypes from 'prop-types';
 
 const Form = ({ type, info, navigation }) => {
 
@@ -43,18 +44,22 @@ const Form = ({ type, info, navigation }) => {
                     onPress={() => ValidateInputs()}
                 />
                 {type == "Login" &&
-                    <TouchableOpacity onPress={() => navigation.navigate(REGISTER)}><Text>{info}</Text></TouchableOpacity>
+                    <TouchableOpacity  onPress={() => navigation.navigate(REGISTER)}><Text style={styles.info}>{info}</Text></TouchableOpacity>
                 }
                 {type == "Register" &&
-                    <TouchableOpacity onPress={() => navigation.navigate(LOGIN)}><Text>{info}</Text></TouchableOpacity>
+                    <TouchableOpacity  onPress={() => navigation.navigate(LOGIN)}><Text style={styles.info}>{info}</Text></TouchableOpacity>
                 }
 
             </View>
         </SafeAreaView>
     )
-
-
 }
+
+Form.propTypes = {
+    type: PropTypes.string,
+    info: PropTypes.string,
+    navigation: PropTypes.any
+};
 
 const styles = StyleSheet.create({
     main: {
@@ -76,6 +81,14 @@ const styles = StyleSheet.create({
     },
     textInput: {
         backgroundColor: '#C0C0C0'
+    },
+    info:{
+        marginTop:10,
+        textAlign: 'center',
+        fontSize: 13,
+        fontWeight: 'bold',
+        color: 'grey',
+        textDecorationLine:'underline'
     }
 });
 
