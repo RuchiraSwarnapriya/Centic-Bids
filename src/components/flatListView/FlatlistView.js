@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { View, Text, FlatList, StyleSheet, RefreshControl, TouchableOpacity } from 'react-native'
 import { BIDDING } from '../../navigation/routes/route_paths';
 import ImageSlider from "../imageSlider/ImageSlider";
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
         width: 200,
         fontSize: 13,
         fontWeight: '500',
-        minHeight:70,
+        minHeight: 70,
     },
     timer: {
         marginTop: 5,
