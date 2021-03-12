@@ -47,7 +47,7 @@ const BiddingScreen = ({ route, navigation }) => {
     };
 
     const confirmBid = () => {
-        Alert.alert("Confirmation", "Are you sure to place this order ?", [
+        Alert.alert("Confirmation", "Are you sure to place this Bid ?", [
             {
                 text: "No",
                 onPress: () => null,
