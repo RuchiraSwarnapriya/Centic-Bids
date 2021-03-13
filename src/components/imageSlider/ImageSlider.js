@@ -1,29 +1,41 @@
 import React from 'react';
 import Swiper from 'react-native-swiper';
 import { View, StyleSheet, Image } from 'react-native'
+import NoPerview from "../../assets/images/no_preview.png";
 
 
-const ImageSlider = ({images, imageStyle}) => {
-    return (
-        <Swiper autoplayTimeout={5}
-            style={styles.wrapper}
-            showsButtons={false}
-            loadMinimal={true}
-            showsPagination={true}
-            paginationStyle={styles.paginationStyle}
-            activeDotStyle={styles.activeDotStyle}
-            dotStyle={styles.dotStyle}
-            loop={true} autoplay={true}
-        >
-            {images.map((data, index) => {
-                return (
-                    <View key={index} style={styles.slider}>
-                        <Image style={[styles.itemImage,{...imageStyle}]} source={{ uri: data }} />
-                    </View>
-                )
-            })}
-        </Swiper>
-    )
+const ImageSlider = ({ images, imageStyle }) => {
+    console.log(images.length)
+    if (images.length == 0) {
+        return (
+            <View style={styles.wrapper}>
+                <View style={styles.slider}>
+                    <Image style={[styles.itemImage, { ...imageStyle }]} source={NoPerview} />
+                </View>
+            </View>
+        )
+    } else {
+        return (
+            <Swiper autoplayTimeout={5}
+                style={styles.wrapper}
+                showsButtons={false}
+                loadMinimal={true}
+                showsPagination={true}
+                paginationStyle={styles.paginationStyle}
+                activeDotStyle={styles.activeDotStyle}
+                dotStyle={styles.dotStyle}
+                loop={true} autoplay={true}
+            >
+                {images.map((data, index) => {
+                    return (
+                        <View key={index} style={styles.slider}>
+                            <Image style={[styles.itemImage, { ...imageStyle }]} source={{ uri: data }} />
+                        </View>
+                    )
+                })}
+            </Swiper>
+        )
+    }
 }
 
 const styles = StyleSheet.create({
@@ -52,7 +64,7 @@ const styles = StyleSheet.create({
         margin: 15,
         width: 120,
         height: 120,
-        borderRadius:5
+        borderRadius: 5
     },
 });
 

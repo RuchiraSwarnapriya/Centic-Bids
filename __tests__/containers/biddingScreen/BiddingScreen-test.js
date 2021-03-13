@@ -11,10 +11,13 @@ jest.mock("react-redux");
 
 jest.useFakeTimers();
 
+
+
 describe('init', () => {
     test('renders correctly', () => {
+        const images = [];
         const mockedParams = {
-            route: { params: { titile: 'test-title', description: 'test-desc', basePrice: 'test-basePrice', currentBid: 'whatever-id', expTime: 'test-expTime' } },
+            route: { params: { titile: 'test-title', description: 'test-desc', basePrice: 'test-basePrice', currentBid: 'whatever-id', expTime: 'test-expTime', images: images  } },
             navigation: ''
         };
 
