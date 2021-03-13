@@ -3,9 +3,10 @@ import { View, Text, FlatList, StyleSheet, RefreshControl, TouchableOpacity } fr
 import { BIDDING } from '../../navigation/routes/route_paths';
 import ImageSlider from "../imageSlider/ImageSlider";
 import CountDowner from "../countDowner/CountDowner";
+import { BID_TIME_OVER, REGISTER } from "../../utils/alert-constants";
+
 
 const FlatlistView = ({ navigation, data, type, IsRefreshing, onRefresh, Time }) => {
-
 
     const bidNow = (item) => navigation.navigate(BIDDING, {
         title: item.title,
@@ -19,11 +20,11 @@ const FlatlistView = ({ navigation, data, type, IsRefreshing, onRefresh, Time })
     const cTime = Time;
 
     const alertDisplay = () => {
-        alert('For Place a BID, You have to Regsiter, Please Register');
+        alert(REGISTER);
     };
 
     const bidOver = () => {
-        alert('You cannot place a bid for this item at the moment now because time is over ');
+        alert(BID_TIME_OVER);
     };
 
     const Card = ({ item }) => {
