@@ -7,7 +7,8 @@ import { HOME } from '../../navigation/routes/route_paths';
 import { useDispatch, useSelector } from 'react-redux';
 import CountDowner from "../../components/countDowner/CountDowner";
 import ImageSlider from '../../components/imageSlider/ImageSlider';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { BID_TIME_OVER, BID_AMOUNT_EMPTY, BID_AMOUNT_GREATER, BID_CONFIRMATION, BID_PLACED } from "../../utils/alert-constants";
 
 
 const BiddingScreen = ({ route, navigation }) => {
@@ -29,16 +30,16 @@ const BiddingScreen = ({ route, navigation }) => {
     const remaningTime = expTime - currentTime;
 
     const bidOver = () => {
-        alert('You cannot place a bid for this item at the moment now because time is over ');
+        alert(BID_TIME_OVER);
     };
 
     const verifyBid = () => {
 
         if (MyBid == 0 || null) {
-            alert('Bid amout cannot be empty');
+            alert(BID_AMOUNT_EMPTY);
         }
         else if (MyBid <= currentBid) {
-            alert('Bid amount should be greater than current bid');
+            alert(BID_AMOUNT_GREATER);
         }
         else {
             confirmBid();
@@ -47,7 +48,7 @@ const BiddingScreen = ({ route, navigation }) => {
     };
 
     const confirmBid = () => {
-        Alert.alert("Confirmation", "Are you sure to place this Bid ?", [
+        Alert.alert("Confirmation", BID_CONFIRMATION, [
             {
                 text: "No",
                 onPress: () => null,
@@ -61,7 +62,7 @@ const BiddingScreen = ({ route, navigation }) => {
         setCurrentBid(MyBid);
         console.log(MyBid)
         updateItemDetails("001", MyBid, fcmToken, bidderID);
-        alert("You have successfully placed bid for this item");
+        alert(BID_PLACED);
         dispatch(fetchItems());
         navigation.navigate(HOME);
     };
