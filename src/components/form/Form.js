@@ -5,6 +5,7 @@ import Header from '../appHeader/Header';
 import { AuthContext } from '../../navigation/AuthProvider';
 import { LOGIN, REGISTER } from '../../navigation/routes/route_paths';
 import PropTypes from 'prop-types';
+import { VALID_EMAIL, EMPTY_PASSWORD } from "../../utils/error-constants";
 
 const Form = ({ type, info, navigation }) => {
 
@@ -15,10 +16,10 @@ const Form = ({ type, info, navigation }) => {
     const ValidateInputs = () => {
 
         if (!EMAIL_VALIDATE_REGEX.test(Email)) {
-            alert("Enter Valid Email");
+            alert(VALID_EMAIL);
         }
         else if (!Password.trim()) {
-            alert("Password cannot be empty");
+            alert(EMPTY_PASSWORD);
         }
         else {
             if (type == "Login") {

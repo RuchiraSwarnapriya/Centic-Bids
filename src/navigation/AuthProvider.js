@@ -2,6 +2,7 @@ import React, { createContext, useState } from 'react';
 import auth from '@react-native-firebase/auth';
 import { registerUser, updateFcmToken } from "../services/user";
 import messaging from '@react-native-firebase/messaging';
+import { TOO_MANY_REQUEST, WRONG_PASSWORD, USER_NOT_FOUND, EMAIL_ALREADY_USED, WEAK_PASSWORD } from "../utils/error-constants";
 
 
 export const AuthContext = createContext({});
@@ -31,7 +32,17 @@ export const AuthProvider = ({ children }) => {
                             });
 
                         }).catch(error => {
-                            alert(error.message);
+                            switch (error.code) {
+                                case 'auth/too-many-requests':
+                                    alert(TOO_MANY_REQUEST);
+                                    break;
+                                case 'auth/wrong-password':
+                                    alert(WRONG_PASSWORD);
+                                    break;
+                                case 'auth/user-not-found':
+                                    alert(USER_NOT_FOUND);
+                                    break;
+                            }
                         });
                     } catch (e) {
                         console.log(e);
@@ -53,11 +64,17 @@ export const AuthProvider = ({ children }) => {
                             });
 
                         }).catch(error => {
-                            alert(error.message);
+                            switch (error.code) {
+                                case 'auth/email-already-in-use':
+                                    alert(EMAIL_ALREADY_USED);
+                                    break;
+                                case 'auth/weak-password':
+                                    alert(WEAK_PASSWORD);
+                                    break;
+                            }
                         });
                     } catch (e) {
                         console.log(e);
-                        alert(e)
                     }
                 },
                 logout: async () => {
