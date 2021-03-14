@@ -9,7 +9,7 @@ import CountDowner from "../../components/countDowner/CountDowner";
 import ImageSlider from '../../components/imageSlider/ImageSlider';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { BID_TIME_OVER, BID_AMOUNT_EMPTY, BID_AMOUNT_GREATER, BID_CONFIRMATION, BID_PLACED } from "../../utils/alert-constants";
-
+import { Colors } from "../../assets/colors";
 
 const BiddingScreen = ({ route, navigation }) => {
 
@@ -106,7 +106,7 @@ const BiddingScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
     main: {
         flex: 1,
-        backgroundColor: "#FFFFFF"
+        backgroundColor: Colors.white
     },
     container: {
         flex: 1,
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     description: {
         marginTop: 30,
         fontSize: 15,
-        color: 'black',
+        color: Colors.black,
         textAlign: 'center'
     },
     detailContainer: {
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 12,
         fontWeight: 'bold',
-        color: 'grey'
+        color: Colors.grey
     },
     timerContainer: {
         marginTop: -35,
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
         width: 300,
         textAlign: 'center',
         marginTop: 30,
-        borderBottomColor: 'grey',
+        borderBottomColor: Colors.grey,
         borderBottomWidth: 1,
         fontSize: 25,
         fontWeight: 'bold'
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     bidButton: {
         width: 300,
         height: 40,
-        backgroundColor: 'green',
+        backgroundColor: Colors.green,
         alignSelf: 'center',
         marginTop: 40,
         justifyContent: 'center',
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     },
     bidButtonText: {
         fontWeight: 'bold',
-        color: 'white',
+        color: Colors.white,
         fontSize: 15
     },
 });

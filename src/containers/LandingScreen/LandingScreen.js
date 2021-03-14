@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Button, StyleSheet, SafeAreaView } from 'react-native';
 import { LOGIN, GUESTHOME } from '../../navigation/routes/route_paths';
+import { Colors } from "../../assets/colors";
 
 
 const LandingScreen = ({ navigation }) => {
@@ -14,13 +15,13 @@ const LandingScreen = ({ navigation }) => {
             <View>
                 <Button
                     title="Login"
-                    color="#841584"
+                    color={Colors.darkMegenda}
                     onPress={LoginNavigatgion}
                 />
                 <View style={styles.separator}></View>
                 <Button
                     title="Guest"
-                    color="green"
+                    color={Colors.green}
                     onPress={GuestNavigation}
                 />
             </View>
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
     },
     separator: {
         marginVertical: 8,
-        borderBottomColor: '#737373',
+        borderBottomColor: Colors.darkGrey,
         borderBottomWidth: StyleSheet.hairlineWidth,
     },
 });

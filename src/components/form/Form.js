@@ -6,6 +6,7 @@ import { AuthContext } from '../../navigation/AuthProvider';
 import { LOGIN, REGISTER } from '../../navigation/routes/route_paths';
 import PropTypes from 'prop-types';
 import { VALID_EMAIL, EMPTY_PASSWORD } from "../../utils/error-constants";
+import { Colors } from '../../assets/colors';
 
 const Form = ({ type, info, navigation }) => {
 
@@ -77,18 +78,18 @@ const styles = StyleSheet.create({
     },
     separator: {
         marginVertical: 8,
-        borderBottomColor: '#FFFFFF',
+        borderBottomColor: Colors.white,
         borderBottomWidth: StyleSheet.hairlineWidth,
     },
     textInput: {
-        backgroundColor: '#C0C0C0'
+        backgroundColor: Colors.silver
     },
     info:{
         marginTop:10,
         textAlign: 'center',
         fontSize: 13,
         fontWeight: 'bold',
-        color: 'grey',
+        color: Colors.grey,
         textDecorationLine:'underline'
     }
 });

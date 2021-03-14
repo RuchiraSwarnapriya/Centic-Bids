@@ -1,7 +1,8 @@
 import React from 'react';
 import Swiper from 'react-native-swiper';
-import { View, StyleSheet, Image } from 'react-native'
+import { View, StyleSheet, Image } from 'react-native';
 import NoPerview from "../../assets/images/no_preview.png";
+import { Colors } from "../../assets/colors";
 
 
 const ImageSlider = ({ images, imageStyle }) => {
@@ -47,13 +48,13 @@ const styles = StyleSheet.create({
         width: 8,
         height: 8,
         borderRadius: 4,
-        backgroundColor: '#004E94'
+        backgroundColor: Colors.magenda
     },
     dotStyle: {
         width: 5,
         height: 5,
         borderRadius: 2.5,
-        backgroundColor: '#A5A5A7'
+        backgroundColor: Colors.darkGrey
     },
     paginationStyle: {
         bottom: -8

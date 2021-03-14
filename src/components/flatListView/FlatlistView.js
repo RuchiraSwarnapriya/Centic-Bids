@@ -4,6 +4,7 @@ import { BIDDING } from '../../navigation/routes/route_paths';
 import ImageSlider from "../imageSlider/ImageSlider";
 import CountDowner from "../countDowner/CountDowner";
 import { BID_TIME_OVER, REGISTER } from "../../utils/alert-constants";
+import { Colors } from "../../assets/colors";
 
 
 const FlatlistView = ({ navigation, data, type, IsRefreshing, onRefresh, Time }) => {
@@ -62,7 +63,7 @@ const FlatlistView = ({ navigation, data, type, IsRefreshing, onRefresh, Time })
                         <Text style={styles.palceHolder}>Remaning Time</Text>
                     </View>
                     {remaningTime <= 0 ?
-                        <TouchableOpacity style={[styles.bidButton, { backgroundColor: 'grey' }]} onPress={() => bidOver()} >
+                        <TouchableOpacity style={[styles.bidButton, { backgroundColor: Colors.grey }]} onPress={() => bidOver()} >
                             <Text style={styles.bidButtonText}>BID NOW</Text>
                         </TouchableOpacity>
                         : type == "User" ?
@@ -70,7 +71,7 @@ const FlatlistView = ({ navigation, data, type, IsRefreshing, onRefresh, Time })
                                 <Text style={styles.bidButtonText}>BID NOW</Text>
                             </TouchableOpacity>
                             :
-                            <TouchableOpacity style={[styles.bidButton, { backgroundColor: 'grey' }]} onPress={() => alertDisplay()} >
+                            <TouchableOpacity style={[styles.bidButton, { backgroundColor: Colors.silver }]} onPress={() => alertDisplay()} >
                                 <Text style={styles.bidButtonText}>BID NOW</Text>
                             </TouchableOpacity>
                     }
@@ -86,10 +87,10 @@ const FlatlistView = ({ navigation, data, type, IsRefreshing, onRefresh, Time })
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: 'white',
+        backgroundColor: Colors.white,
         width: 370,
         marginTop: 10,
-        shadowColor: "#000",
+        shadowColor: Colors.black,
         elevation: 2,
         borderRadius: 10,
         marginBottom: 20
@@ -139,12 +140,12 @@ const styles = StyleSheet.create({
     bidPrice: {
         fontSize: 22,
         fontWeight: 'bold',
-        color: "black"
+        color: Colors.black
     },
     palceHolder: {
         fontSize: 12,
         fontWeight: 'bold',
-        color: 'grey'
+        color: Colors.grey
     },
     buttonAndTimer: {
         flexDirection: 'row',
@@ -165,7 +166,7 @@ const styles = StyleSheet.create({
     bidButton: {
         width: 200,
         height: 30,
-        backgroundColor: 'green',
+        backgroundColor: Colors.green,
         alignSelf: 'flex-end',
         margin: 10,
         justifyContent: 'center',
@@ -174,7 +175,7 @@ const styles = StyleSheet.create({
     },
     bidButtonText: {
         fontWeight: 'bold',
-        color: 'white'
+        color: Colors.white
     },
 });
 
