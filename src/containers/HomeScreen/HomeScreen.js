@@ -54,7 +54,7 @@ const HomeScreen = ({ navigation }) => {
 
     return (
         <View style={styles.main}>
-            <Text style={styles.title}>Ongoing Bids</Text>
+            <Text style={styles.title}>Centic Bids</Text>
             {IsLoading ?
                 <Loader />
                 :
