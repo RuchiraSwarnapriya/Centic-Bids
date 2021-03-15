@@ -10,6 +10,7 @@ import Button from "../../components/button/Button";
 
 const FlatlistView = ({ navigation, data, type, IsRefreshing, onRefresh, Time }) => {
 
+    // navigate to bidding screen
     const bidNow = (item) => navigation.navigate(BIDDING, {
         title: item.title,
         description: item.description,
@@ -21,10 +22,12 @@ const FlatlistView = ({ navigation, data, type, IsRefreshing, onRefresh, Time })
 
     const cTime = Time;
 
+    // alert for unrigestered user
     const alertDisplay = () => {
         alert(REGISTER);
     };
 
+    // alert when bid time is over
     const bidOver = () => {
         alert(BID_TIME_OVER);
     };

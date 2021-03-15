@@ -31,10 +31,12 @@ const BiddingScreen = ({ route, navigation }) => {
 
     const remaningTime = expTime - currentTime;
 
+    // alert for when bid time is over
     const bidOver = () => {
         alert(BID_TIME_OVER);
     };
 
+    // check bid value matching for conditons
     const verifyBid = () => {
 
         if (MyBid == 0 || null) {
@@ -49,6 +51,7 @@ const BiddingScreen = ({ route, navigation }) => {
 
     };
 
+    // confirmation of the bid
     const confirmBid = () => {
         Alert.alert("Confirmation", BID_CONFIRMATION, [
             {
@@ -60,6 +63,7 @@ const BiddingScreen = ({ route, navigation }) => {
         ]);
     };
 
+    // place bid and navigate to home screen
     const placeBid = () => {
         setCurrentBid(MyBid);
         console.log(MyBid)

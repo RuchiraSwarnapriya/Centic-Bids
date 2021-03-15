@@ -8,8 +8,10 @@ import Button from "../../components/button/Button";
 
 const LandingScreen = ({ navigation }) => {
 
+    //navigate to login page
     const LoginNavigatgion = () => navigation.navigate(LOGIN);
 
+    //navigate to guest home page
     const GuestNavigation = () => navigation.navigate(GUESTHOME);
 
     return (

@@ -15,6 +15,7 @@ const Form = ({ type, info, navigation }) => {
     const [Password, setPassword] = useState('');
     const { register, login } = useContext(AuthContext);
 
+    // validate input fileds and login or register
     const ValidateInputs = () => {
 
         if (!EMAIL_VALIDATE_REGEX.test(Email)) {

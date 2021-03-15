@@ -15,6 +15,7 @@ const GuestHomeScreen = ({ navigation }) => {
 
     const [Time, setTime] = useState(new Date());
 
+    // pull down and refreh app timer
     const refreshTime = () => {
         setIsRefreshing(true);
         fetchInitialData();
@@ -23,6 +24,7 @@ const GuestHomeScreen = ({ navigation }) => {
 
     const [IsLoading, setIsLoading] = useState(true);
 
+    // fetch bid items from database
     const fetchInitialData = useCallback(async () => {
         await dispatch(fetchItems());
         setTime(new Date());

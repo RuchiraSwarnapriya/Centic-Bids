@@ -26,12 +26,14 @@ const HomeScreen = ({ navigation }) => {
 
     const [Time, setTime] = useState(new Date());
 
+    // pull down and refreh app timer
     const refreshTime = () => {
         setIsRefreshing(true);
         fetchInitialData();
         setIsRefreshing(false);
     };
 
+    //fetch bid items from databse
     const fetchInitialData = useCallback(async () => {
         await dispatch(fetchItems());
         await dispatch(fetchUser(uid));
@@ -45,6 +47,7 @@ const HomeScreen = ({ navigation }) => {
     }, [fetchInitialData]);
 
 
+    // get data from redux store
     const auctionItemDetails = useSelector(({ auctionItems }) => auctionItems.items);
 
     console.log(auctionItemDetails)
