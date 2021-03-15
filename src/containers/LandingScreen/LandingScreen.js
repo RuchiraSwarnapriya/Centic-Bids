@@ -52,12 +52,12 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         width: 300,
         height: 300,
-        bottom: 150
+        bottom: 100
     },
     loginButton: {
         backgroundColor: Colors.darkMegenda
     },
-    guestButton:{
+    guestButton: {
         backgroundColor: Colors.green
     }
 });
