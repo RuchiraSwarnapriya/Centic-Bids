@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import FlatListView from "../../components/flatListView/FlatlistView";
 import auth from '@react-native-firebase/auth';
 import Loader from "../../components/loader/Loader";
+import { Colors } from '../../assets/colors'
 
 
 
@@ -63,7 +64,8 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     main: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: Colors.azure
     },
     title: {
         textAlign: 'center',

@@ -7,5 +7,8 @@ export const Colors = {
     magenda:'#004E94',
     darkGrey:'#A5A5A7',
     blue:'#6646EE',
-    darkMegenda:'#841584'
+    darkMegenda:'#841584',
+    snow:'#FFFAFA',
+    azure:'#F0FFFF',
+    ghostWhite:'#F8F8FF'
 };

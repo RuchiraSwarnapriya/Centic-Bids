@@ -40,16 +40,19 @@ const Form = ({ type, info, navigation }) => {
                 <View style={styles.separator} />
                 <TextInput style={styles.textInput} placeholder="Plase enter your password" secureTextEntry={true} onChangeText={value => setPassword(value)} />
                 <View style={styles.separator} />
-                <Button
-                    title={type}
-                    color="#841584"
-                    onPress={() => ValidateInputs()}
-                />
+                <View style={styles.button}>
+                    <Button
+                        title={type}
+                        color="#841584"
+                        onPress={() => ValidateInputs()}
+                    />
+                </View>
+
                 {type == "Login" &&
-                    <TouchableOpacity  onPress={() => navigation.navigate(REGISTER)}><Text style={styles.info}>{info}</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate(REGISTER)}><Text style={styles.info}>{info}</Text></TouchableOpacity>
                 }
                 {type == "Register" &&
-                    <TouchableOpacity  onPress={() => navigation.navigate(LOGIN)}><Text style={styles.info}>{info}</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate(LOGIN)}><Text style={styles.info}>{info}</Text></TouchableOpacity>
                 }
 
             </View>
@@ -65,11 +68,13 @@ Form.propTypes = {
 
 const styles = StyleSheet.create({
     main: {
-        flex: 1
+        flex: 1,
+        backgroundColor: Colors.white
     },
     container: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom: 80,
         marginHorizontal: 16,
     },
     title: {
@@ -82,15 +87,22 @@ const styles = StyleSheet.create({
         borderBottomWidth: StyleSheet.hairlineWidth,
     },
     textInput: {
-        backgroundColor: Colors.silver
+        backgroundColor: Colors.ghostWhite,
+        borderColor:Colors.grey,
+        borderWidth:0.2,
+        borderRadius:5,
+        textAlign:'center'
     },
-    info:{
-        marginTop:10,
+    button: {
+        marginTop: 30,
+    },
+    info: {
+        marginTop: 10,
         textAlign: 'center',
         fontSize: 13,
         fontWeight: 'bold',
         color: Colors.grey,
-        textDecorationLine:'underline'
+        textDecorationLine: 'underline'
     }
 });
 
