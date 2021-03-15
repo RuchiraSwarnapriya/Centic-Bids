@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, RefreshControl, TouchableOpacity } from 'react-native'
-import { BIDDING } from '../../navigation/routes/route_paths';
+import { BIDDING } from '../../navigation/routePaths';
 import ImageSlider from "../imageSlider/ImageSlider";
 import CountDowner from "../countDowner/CountDowner";
 import { BID_TIME_OVER, REGISTER } from "../../utils/alert-constants";

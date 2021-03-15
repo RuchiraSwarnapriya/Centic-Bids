@@ -1,18 +1,19 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
-import AuthStack from './AuthStack';
-import HomeStack from './HomeStack';
-import { AuthContext } from '../AuthProvider';
+import AuthStack from '../stacks/authStack';
+import HomeStack from '../stacks/homeStack';
+import { AuthContext } from '../authProvider';
 import Loader from '../../components/loader/Loader';
 
-export default function Routes() {
+const Routes = () => {
+
   const { user, setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [initializing, setInitializing] = useState(true);
 
   // Handle user state changes
-  function onAuthStateChanged(user) {
+  const onAuthStateChanged = (user) => {
     setUser(user);
     if (initializing) setInitializing(false);
     setLoading(false);
@@ -20,7 +21,7 @@ export default function Routes() {
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
+    return subscriber;
   }, []);
 
   if (loading) {
@@ -33,3 +34,5 @@ export default function Routes() {
     </NavigationContainer>
   );
 }
+
+export default Routes

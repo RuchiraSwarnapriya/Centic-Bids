@@ -1,15 +1,15 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from '../../containers/homeScreen/HomeScreen';
-import BiddingScreen from "../../containers/biddingScreen/BiddingScreen";
+import HomeScreen from '../../../containers/homeScreen/HomeScreen';
+import BiddingScreen from "../../../containers/biddingScreen/BiddingScreen";
 import {
     HOME,
     BIDDING,
-} from './route_paths';
+} from '../../routePaths';
 
 const Stack = createStackNavigator();
 
-export default function HomeStack() {
+const HomeStack = () => {
     return (
         <Stack.Navigator initialRouteName={HOME}
             screenOptions={{
@@ -20,3 +20,5 @@ export default function HomeStack() {
         </Stack.Navigator>
     );
 }
+
+export default HomeStack

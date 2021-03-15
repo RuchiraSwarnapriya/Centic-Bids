@@ -1,5 +1,5 @@
 import React from 'react';
-import Providers from './src/navigation/routes';
+import MainRoute from './src/navigation/routes';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
 
@@ -7,7 +7,7 @@ import store from './src/redux/store';
 const App: () => React$Node = () => {
   return (
     <Provider store={store} >
-      <Providers />
+      <MainRoute />
     </Provider>
 
   );

@@ -1,11 +1,13 @@
 import React from 'react';
-import { AuthProvider } from '../AuthProvider';
+import { AuthProvider } from '../authProvider';
 import Routes from './Routes';
 
-export default function Providers() {
+const MainRoute = () => {
   return (
     <AuthProvider>
       <Routes />
     </AuthProvider>
   );
 }
+
+export default MainRoute

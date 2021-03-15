@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, Aler
 import Header from "../../components/appHeader/Header";
 import { fetchItems } from '../../redux/actions/auctionItem';
 import { updateItemDetails } from "../../services/auctionItems";
-import { HOME } from '../../navigation/routes/route_paths';
+import { HOME } from '../../navigation/routePaths';
 import { useDispatch, useSelector } from 'react-redux';
 import CountDowner from "../../components/countDowner/CountDowner";
 import ImageSlider from '../../components/imageSlider/ImageSlider';

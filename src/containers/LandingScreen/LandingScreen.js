@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Button, StyleSheet, SafeAreaView } from 'react-native';
-import { LOGIN, GUESTHOME } from '../../navigation/routes/route_paths';
+import { LOGIN, GUESTHOME } from '../../navigation/routePaths';
 import { Colors } from "../../assets/colors";
 
 

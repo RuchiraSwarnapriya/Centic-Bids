@@ -1,19 +1,19 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import LandingScreen from '../../containers/landingScreen/LandingScreen';
-import LoginScreen from '../../containers/loginScreen/LoginScreen';
-import RegisterScreen from "../../containers/registerScreen/RegisterScreen";
-import GuestHomeScreen from "../../containers/guestHomeScreen/GuestHomeScreen";
+import LandingScreen from '../../../containers/landingScreen/LandingScreen';
+import LoginScreen from '../../../containers/loginScreen/LoginScreen';
+import RegisterScreen from "../../../containers/registerScreen/RegisterScreen";
+import GuestHomeScreen from "../../../containers/guestHomeScreen/GuestHomeScreen";
 import {
     LANDING,
     LOGIN,
     REGISTER,
     GUESTHOME
-} from './route_paths';
+} from '../../routePaths';
 
 const Stack = createStackNavigator();
 
-export default function AuthStack() {
+const AuthStack = () => {
     return (
         <Stack.Navigator initialRouteName={LANDING}
             screenOptions={{
@@ -26,3 +26,5 @@ export default function AuthStack() {
         </Stack.Navigator>
     );
 }
+
+export default AuthStack
