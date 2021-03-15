@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, TextInput, Alert } from 'react-native';
 import Header from "../../components/appHeader/Header";
 import { fetchItems } from '../../redux/actions/auctionItem';
 import { updateItemDetails } from "../../services/auctionItems";
@@ -10,6 +10,8 @@ import ImageSlider from '../../components/imageSlider/ImageSlider';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { BID_TIME_OVER, BID_AMOUNT_EMPTY, BID_AMOUNT_GREATER, BID_CONFIRMATION, BID_PLACED } from "../../utils/alert-constants";
 import { Colors } from "../../assets/colors";
+import Button from "../../components/button/Button";
+
 
 const BiddingScreen = ({ route, navigation }) => {
 
@@ -91,12 +93,9 @@ const BiddingScreen = ({ route, navigation }) => {
                 </View>
                 <TextInput style={styles.textInput} placeholder="Place your Bid here" keyboardType='numeric' onChangeText={value => setMyBid(value)} />
                 {remaningTime <= 0 ?
-                    <TouchableOpacity style={styles.bidButton} onPress={() => bidOver()}>
-                        <Text style={styles.bidButtonText}>PLACE BID</Text>
-                    </TouchableOpacity> :
-                    <TouchableOpacity style={styles.bidButton} onPress={() => verifyBid()}>
-                        <Text style={styles.bidButtonText}>PLACE BID</Text>
-                    </TouchableOpacity>
+                    <Button title="Place Bid" buttonStyle={styles.bidButton} onPress={() => bidOver()} />
+                    :
+                    <Button title="Place Bid" buttonStyle={styles.bidButton} onPress={() => verifyBid()} />
                 }
             </KeyboardAwareScrollView>
         </SafeAreaView>
@@ -177,12 +176,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 40,
         justifyContent: 'center',
-        alignItems: 'center'
-    },
-    bidButtonText: {
-        fontWeight: 'bold',
-        color: Colors.white,
-        fontSize: 15
+        alignItems: 'center',
     },
 });
 

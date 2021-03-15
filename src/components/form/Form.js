@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, SafeAreaView, Button, StyleSheet, TextInput, Text, TouchableOpacity } from 'react-native';
+import { View, SafeAreaView, StyleSheet, TextInput, Text, TouchableOpacity } from 'react-native';
 import { EMAIL_VALIDATE_REGEX } from '../../utils/constants';
 import Header from '../appHeader/Header';
 import { AuthContext } from '../../navigation/authProvider';
@@ -7,6 +7,7 @@ import { LOGIN, REGISTER } from '../../navigation/routePaths';
 import PropTypes from 'prop-types';
 import { VALID_EMAIL, EMPTY_PASSWORD } from "../../utils/error-constants";
 import { Colors } from '../../assets/colors';
+import Button from "../../components/button/Button";
 
 const Form = ({ type, info, navigation }) => {
 
@@ -40,14 +41,11 @@ const Form = ({ type, info, navigation }) => {
                 <View style={styles.separator} />
                 <TextInput style={styles.textInput} placeholder="Plase enter your password" secureTextEntry={true} onChangeText={value => setPassword(value)} />
                 <View style={styles.separator} />
-                <View style={styles.button}>
-                    <Button
-                        title={type}
-                        color="#841584"
-                        onPress={() => ValidateInputs()}
-                    />
-                </View>
-
+                <Button
+                    title={type}
+                    buttonStyle={styles.button}
+                    onPress={() => ValidateInputs()}
+                />
                 {type == "Login" &&
                     <TouchableOpacity onPress={() => navigation.navigate(REGISTER)}><Text style={styles.info}>{info}</Text></TouchableOpacity>
                 }
@@ -88,13 +86,14 @@ const styles = StyleSheet.create({
     },
     textInput: {
         backgroundColor: Colors.ghostWhite,
-        borderColor:Colors.grey,
-        borderWidth:0.2,
-        borderRadius:5,
-        textAlign:'center'
+        borderColor: Colors.grey,
+        borderWidth: 0.2,
+        borderRadius: 5,
+        textAlign: 'center'
     },
     button: {
-        marginTop: 30,
+        marginTop: 20,
+        backgroundColor: Colors.darkMegenda
     },
     info: {
         marginTop: 10,

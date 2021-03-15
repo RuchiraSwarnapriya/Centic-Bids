@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, RefreshControl, TouchableOpacity } from 'react-native'
+import { View, Text, FlatList, StyleSheet, RefreshControl } from 'react-native'
 import { BIDDING } from '../../navigation/routePaths';
 import ImageSlider from "../imageSlider/ImageSlider";
 import CountDowner from "../countDowner/CountDowner";
 import { BID_TIME_OVER, REGISTER } from "../../utils/alert-constants";
 import { Colors } from "../../assets/colors";
+import Button from "../../components/button/Button";
 
 
 const FlatlistView = ({ navigation, data, type, IsRefreshing, onRefresh, Time }) => {
@@ -63,17 +64,11 @@ const FlatlistView = ({ navigation, data, type, IsRefreshing, onRefresh, Time })
                         <Text style={styles.palceHolder}>Remaning Time</Text>
                     </View>
                     {remaningTime <= 0 ?
-                        <TouchableOpacity style={[styles.bidButton, { backgroundColor: Colors.grey }]} onPress={() => bidOver()} >
-                            <Text style={styles.bidButtonText}>BID NOW</Text>
-                        </TouchableOpacity>
+                        <Button title="Bid Now" buttonStyle={styles.overButton} onPress={() => bidOver()} />
                         : type == "User" ?
-                            < TouchableOpacity style={styles.bidButton} onPress={() => bidNow(item)} >
-                                <Text style={styles.bidButtonText}>BID NOW</Text>
-                            </TouchableOpacity>
+                            <Button title="Bid Now" buttonStyle={styles.normalButton} onPress={() => bidNow(item)} />
                             :
-                            <TouchableOpacity style={[styles.bidButton, { backgroundColor: Colors.silver }]} onPress={() => alertDisplay()} >
-                                <Text style={styles.bidButtonText}>BID NOW</Text>
-                            </TouchableOpacity>
+                            <Button title="Bid Now" buttonStyle={styles.disabledButton} onPress={() => alertDisplay()} />
                     }
                 </View>
             </View >
@@ -163,20 +158,28 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center'
     },
-    bidButton: {
+    normalButton: {
+        marginRight: 10,
         width: 200,
         height: 30,
+        borderRadius: 8,
         backgroundColor: Colors.green,
-        alignSelf: 'flex-end',
-        margin: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 20
     },
-    bidButtonText: {
-        fontWeight: 'bold',
-        color: Colors.white
+    disabledButton: {
+        marginRight: 10,
+        width: 200,
+        height: 30,
+        borderRadius: 8,
+        backgroundColor: Colors.silver,
     },
+    overButton: {
+        marginRight: 10,
+        width: 200,
+        height: 30,
+        borderRadius: 8,
+        backgroundColor: Colors.grey,
+    },
+
 });
 
 export default FlatlistView
