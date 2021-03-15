@@ -36,6 +36,7 @@ const GuestHomeScreen = ({ navigation }) => {
         setIsLoading(false);
     }, [fetchInitialData]);
 
+    // get data from redux store
     const auctionItemDetails = useSelector(({ auctionItems }) => auctionItems.items);
 
     return (
@@ -44,7 +45,7 @@ const GuestHomeScreen = ({ navigation }) => {
             { IsLoading ?
                 <Loader />
                 :
-                <FlatListView navigation={navigation} data={auctionItemDetails} type="Guest" IsRefreshing={IsRefreshing} onRefresh={refreshTime} Time={Time}/>
+                <FlatListView navigation={navigation} data={auctionItemDetails} type="Guest" IsRefreshing={IsRefreshing} onRefresh={refreshTime} Time={Time} />
             }
         </View>
     )
