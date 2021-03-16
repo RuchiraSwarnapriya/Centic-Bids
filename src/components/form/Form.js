@@ -40,7 +40,6 @@ const Form = ({ type, info, navigation }) => {
     return (
         <SafeAreaView style={styles.main}>
             <Header title={type} navigation={navigation} />
-
             <KeyboardAwareScrollView style={styles.main}>
                 <Image source={AppLogo} style={styles.appLogo}></Image>
                 <View style={styles.container}>

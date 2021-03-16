@@ -6,7 +6,6 @@ import { Colors } from "../../assets/colors";
 
 
 const ImageSlider = ({ images, imageStyle }) => {
-    console.log(images.length)
     if (images.length == 0) {
         return (
             <View style={styles.wrapper}>
