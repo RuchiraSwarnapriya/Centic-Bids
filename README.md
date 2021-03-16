@@ -8,7 +8,7 @@ This project is developed using `react-native` as a frontend framework and `fire
 
 ## Quick start
 
-#### 1. Clone repository
+#### 1. Clone repository:
 
  ```command
 git clone https://github.com/RuchiraSwarnapriya/Centic-Bids.git
@@ -28,7 +28,7 @@ npm install
 ```command
 npm start
 ```
-#### 5. Run Android App.
+#### 5. Run Android App:
 
 ```command
 # Make sure the ANDROID_HOME environment variable is configured properly
@@ -36,4 +36,11 @@ npm start
 npx react-native run-android # to run the Android application
 ```
 
+#### 6. For unit testing:
+
+```command
+npm test
+```
+
 Now you're ready to Bids!
+
