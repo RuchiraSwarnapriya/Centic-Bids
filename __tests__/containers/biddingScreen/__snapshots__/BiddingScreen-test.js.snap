@@ -16,9 +16,9 @@ exports[`init renders correctly 1`] = `
         "alignItems": "center",
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "marginLeft": 15,
-        "marginRight": 30,
-        "marginTop": 15,
+        "marginLeft": 10,
+        "marginRight": 15,
+        "marginTop": 10,
       }
     }
   >
@@ -44,7 +44,7 @@ exports[`init renders correctly 1`] = `
           Array [
             Object {
               "color": "#000000",
-              "fontSize": 45,
+              "fontSize": 25,
             },
             undefined,
             Object {
@@ -158,7 +158,7 @@ exports[`init renders correctly 1`] = `
       <Text
         style={
           Object {
-            "color": "black",
+            "color": "#000000",
             "fontSize": 15,
             "marginTop": 30,
             "textAlign": "center",
@@ -194,7 +194,7 @@ exports[`init renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "grey",
+                  "color": "#808080",
                   "fontSize": 12,
                   "fontWeight": "bold",
                   "textAlign": "center",
@@ -222,7 +222,7 @@ exports[`init renders correctly 1`] = `
           <Text
             style={
               Object {
-                "color": "grey",
+                "color": "#808080",
                 "fontSize": 12,
                 "fontWeight": "bold",
                 "textAlign": "center",
@@ -572,7 +572,7 @@ exports[`init renders correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "grey",
+                "color": "#808080",
                 "fontSize": 12,
                 "fontWeight": "bold",
                 "textAlign": "center",
@@ -592,7 +592,7 @@ exports[`init renders correctly 1`] = `
         style={
           Object {
             "alignSelf": "center",
-            "borderBottomColor": "grey",
+            "borderBottomColor": "#808080",
             "borderBottomWidth": 1,
             "fontSize": 25,
             "fontWeight": "bold",
@@ -617,7 +617,8 @@ exports[`init renders correctly 1`] = `
           Object {
             "alignItems": "center",
             "alignSelf": "center",
-            "backgroundColor": "green",
+            "backgroundColor": "#008000",
+            "borderRadius": 20,
             "height": 40,
             "justifyContent": "center",
             "marginTop": 40,
@@ -629,13 +630,15 @@ exports[`init renders correctly 1`] = `
         <Text
           style={
             Object {
-              "color": "white",
-              "fontSize": 15,
+              "color": "#FFFFFF",
+              "fontSize": 14,
               "fontWeight": "bold",
+              "textAlign": "center",
+              "textTransform": "uppercase",
             }
           }
         >
-          PLACE BID
+          Place Bid
         </Text>
       </View>
     </View>

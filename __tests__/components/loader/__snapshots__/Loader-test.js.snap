@@ -12,7 +12,7 @@ exports[`renders correctly 1`] = `
 >
   <ActivityIndicator
     animating={true}
-    color="#6646ee"
+    color="#6646EE"
     hidesWhenStopped={true}
     size="large"
   />
