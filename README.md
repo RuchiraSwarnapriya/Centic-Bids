@@ -16,7 +16,7 @@ git clone https://github.com/RuchiraSwarnapriya/centic_auction.git
 #### 2.  Open project directory:
 
 ```command
-cd <YOUR_PROJECT_DIRECTORY_NAME>
+cd <CLONED_PROJECT_DIRECTORY>
 ```
 #### 3.  Install depedencies:
 
