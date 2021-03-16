@@ -1,12 +1,12 @@
 import React, { useEffect, useCallback, useState } from 'react';
-import { View, Text, StyleSheet, RefreshControl } from 'react-native';
+import { View, Text } from 'react-native';
 import { fetchItems } from '../../redux/actions/auctionItem';
 import { fetchUser } from '../../redux/actions/user';
 import { useDispatch, useSelector } from 'react-redux';
 import FlatListView from "../../components/flatListView/FlatlistView";
 import auth from '@react-native-firebase/auth';
 import Loader from "../../components/loader/Loader";
-import { Colors } from '../../assets/colors'
+import styles from "./styles";
 
 
 
@@ -64,18 +64,6 @@ const HomeScreen = ({ navigation }) => {
     )
 }
 
-const styles = StyleSheet.create({
-    main: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: Colors.azure
-    },
-    title: {
-        textAlign: 'center',
-        marginVertical: 8,
-        fontSize: 20,
-        fontWeight: 'bold'
-    },
-});
+
 
 export default HomeScreen

@@ -1,11 +1,12 @@
 import React, { useEffect, useCallback, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import { fetchItems } from '../../redux/actions/auctionItem';
 import { useSelector } from 'react-redux';
 import FlatListView from "../../components/flatListView/FlatlistView";
 import { useDispatch } from 'react-redux';
 import Loader from "../../components/loader/Loader";
-import { Colors } from '../../assets/colors'
+import styles from "./styles";
+
 
 const GuestHomeScreen = ({ navigation }) => {
 
@@ -50,19 +51,5 @@ const GuestHomeScreen = ({ navigation }) => {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    main: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: Colors.azure
-    },
-    title: {
-        textAlign: 'center',
-        marginVertical: 8,
-        fontSize: 20,
-        fontWeight: 'bold'
-    },
-});
 
 export default GuestHomeScreen

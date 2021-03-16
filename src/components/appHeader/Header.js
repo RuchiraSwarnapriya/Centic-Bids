@@ -1,7 +1,8 @@
 import React from 'react'
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import { Colors } from "../../assets/colors";
+import styles from './styles'
 
 
 const Header = ({navigation, title}) => { 
@@ -14,22 +15,5 @@ const Header = ({navigation, title}) => {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-
-    headerContainer: {
-        marginLeft: 10,
-        marginTop: 10,
-        marginRight: 15,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-    },
-    title: {
-        fontSize: 25,
-        fontWeight: 'bold'
-    },
-   
-});
 
 export default Header

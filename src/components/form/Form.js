@@ -1,15 +1,15 @@
 import React, { useState, useContext } from 'react';
-import { View, SafeAreaView, StyleSheet, TextInput, Text, TouchableOpacity, Image } from 'react-native';
+import { View, SafeAreaView, TextInput, Text, TouchableOpacity, Image } from 'react-native';
 import { EMAIL_VALIDATE_REGEX } from '../../utils/constants';
 import Header from '../appHeader/Header';
 import { AuthContext } from '../../navigation/authProvider';
 import { LOGIN, REGISTER } from '../../navigation/routePaths';
 import PropTypes from 'prop-types';
 import { VALID_EMAIL, EMPTY_PASSWORD } from "../../utils/error-constants";
-import { Colors } from '../../assets/colors';
 import Button from "../../components/button/Button";
 import AppLogo from '../../assets/images/logo.png';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import styles from "./styles";
 
 
 const Form = ({ type, info, navigation }) => {
@@ -71,51 +71,5 @@ Form.propTypes = {
     navigation: PropTypes.any
 };
 
-const styles = StyleSheet.create({
-    main: {
-        flex: 1,
-        backgroundColor: Colors.white
-    },
-    container: {
-        height: 400,
-        justifyContent: 'flex-end',
-        bottom:50,
-        marginHorizontal: 16,
-    },
-    title: {
-        textAlign: 'center',
-        marginVertical: 8,
-    },
-    appLogo: {
-        width: 250,
-        height: 250,
-        alignSelf: 'center',
-        marginTop: 50
-    },
-    separator: {
-        marginVertical: 8,
-        borderBottomColor: Colors.white,
-        borderBottomWidth: StyleSheet.hairlineWidth,
-    },
-    textInput: {
-        backgroundColor: Colors.ghostWhite,
-        borderColor: Colors.grey,
-        borderWidth: 0.2,
-        borderRadius: 5,
-        textAlign: 'center'
-    },
-    button: {
-        marginTop: 20,
-        backgroundColor: Colors.darkMegenda
-    },
-    info: {
-        marginTop: 10,
-        textAlign: 'center',
-        fontSize: 13,
-        fontWeight: 'bold',
-        color: Colors.grey,
-        textDecorationLine: 'underline'
-    }
-});
 
 export default Form
