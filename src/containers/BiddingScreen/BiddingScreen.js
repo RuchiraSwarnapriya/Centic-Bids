@@ -66,7 +66,6 @@ const BiddingScreen = ({ route, navigation }) => {
     // place bid and navigate to home screen
     const placeBid = () => {
         setCurrentBid(MyBid);
-        console.log(MyBid)
         updateItemDetails("001", MyBid, fcmToken, bidderID);
         alert(BID_PLACED);
         dispatch(fetchItems());

@@ -14,8 +14,6 @@ const HomeScreen = ({ navigation }) => {
 
     const user = auth().currentUser;
 
-    console.log(user);
-
     const uid = user.uid;
 
     const [IsLoading, setIsLoading] = useState(false);
@@ -49,8 +47,6 @@ const HomeScreen = ({ navigation }) => {
 
     // get data from redux store
     const auctionItemDetails = useSelector(({ auctionItems }) => auctionItems.items);
-
-    console.log(auctionItemDetails)
 
     return (
         <View style={styles.main}>
