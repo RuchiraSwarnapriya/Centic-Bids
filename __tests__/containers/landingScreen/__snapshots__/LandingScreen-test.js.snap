@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "backgroundColor": "#FFFFFF",
+      "flex": 1,
+      "justifyContent": "flex-end",
+      "paddingBottom": 50,
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/assets/images/logo.png",
+      }
+    }
+    style={
+      Object {
+        "alignSelf": "center",
+        "bottom": 100,
+        "height": 300,
+        "justifyContent": "flex-start",
+        "width": 300,
+      }
+    }
+  />
+  <View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignSelf": "center",
+          "backgroundColor": "#841584",
+          "borderRadius": 20,
+          "height": 40,
+          "justifyContent": "center",
+          "opacity": 1,
+          "width": 300,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontSize": 14,
+            "fontWeight": "bold",
+            "textAlign": "center",
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Login
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignSelf": "center",
+          "borderBottomColor": "#A5A5A7",
+          "borderBottomWidth": 0.5,
+          "marginVertical": 10,
+          "width": 250,
+        }
+      }
+    />
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignSelf": "center",
+          "backgroundColor": "#008000",
+          "borderRadius": 20,
+          "height": 40,
+          "justifyContent": "center",
+          "opacity": 1,
+          "width": 300,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontSize": 14,
+            "fontWeight": "bold",
+            "textAlign": "center",
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Guest
+      </Text>
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;

@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/assets/images/no_preview.png",
+        }
+      }
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 5,
+            "height": 120,
+            "justifyContent": "center",
+            "margin": 15,
+            "width": 120,
+          },
+          Object {},
+        ]
+      }
+    />
+  </View>
+</View>
+`;
