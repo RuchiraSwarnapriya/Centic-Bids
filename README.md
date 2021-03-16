@@ -11,7 +11,7 @@ This project is developed using `react-native` as a frontend framework and `fire
 #### 1. Clone repository
 
  ```command
-git clone https://github.com/RuchiraSwarnapriya/centic_auction.git
+git clone https://github.com/RuchiraSwarnapriya/Centic-Bids.git
 ```
 #### 2.  Open project directory:
 
