@@ -15,7 +15,7 @@ import styles from "./styles";
 
 const BiddingScreen = ({ route, navigation }) => {
 
-    const { title, description, basePrice, currentBid, expTime, images } = route.params;
+    const { id, title, description, basePrice, currentBid, expTime, images } = route.params;
 
     const dispatch = useDispatch();
 
@@ -66,7 +66,7 @@ const BiddingScreen = ({ route, navigation }) => {
     // place bid and navigate to home screen
     const placeBid = () => {
         setCurrentBid(MyBid);
-        updateItemDetails("001", MyBid, fcmToken, bidderID);
+        updateItemDetails(id , MyBid, fcmToken, bidderID);
         alert(BID_PLACED);
         dispatch(fetchItems());
         navigation.navigate(HOME);

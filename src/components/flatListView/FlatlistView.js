@@ -12,6 +12,7 @@ const FlatlistView = ({ navigation, data, type, IsRefreshing, onRefresh, Time })
 
     // navigate to bidding screen
     const bidNow = (item) => navigation.navigate(BIDDING, {
+        id: item.id,
         title: item.title,
         description: item.description,
         basePrice: item.basePrice,
