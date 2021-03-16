@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, SafeAreaView, StyleSheet, TextInput, Text, TouchableOpacity } from 'react-native';
+import { View, SafeAreaView, StyleSheet, TextInput, Text, TouchableOpacity, Image } from 'react-native';
 import { EMAIL_VALIDATE_REGEX } from '../../utils/constants';
 import Header from '../appHeader/Header';
 import { AuthContext } from '../../navigation/authProvider';
@@ -8,6 +8,9 @@ import PropTypes from 'prop-types';
 import { VALID_EMAIL, EMPTY_PASSWORD } from "../../utils/error-constants";
 import { Colors } from '../../assets/colors';
 import Button from "../../components/button/Button";
+import AppLogo from '../../assets/images/logo.png';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 const Form = ({ type, info, navigation }) => {
 
@@ -37,24 +40,28 @@ const Form = ({ type, info, navigation }) => {
     return (
         <SafeAreaView style={styles.main}>
             <Header title={type} navigation={navigation} />
-            <View style={styles.container}>
-                <TextInput style={styles.textInput} placeholder="Plase enter your email" keyboardType='email-address' onChangeText={value => setEmail(value)} />
-                <View style={styles.separator} />
-                <TextInput style={styles.textInput} placeholder="Plase enter your password" secureTextEntry={true} onChangeText={value => setPassword(value)} />
-                <View style={styles.separator} />
-                <Button
-                    title={type}
-                    buttonStyle={styles.button}
-                    onPress={() => ValidateInputs()}
-                />
-                {type == "Login" &&
-                    <TouchableOpacity onPress={() => navigation.navigate(REGISTER)}><Text style={styles.info}>{info}</Text></TouchableOpacity>
-                }
-                {type == "Register" &&
-                    <TouchableOpacity onPress={() => navigation.navigate(LOGIN)}><Text style={styles.info}>{info}</Text></TouchableOpacity>
-                }
 
-            </View>
+            <KeyboardAwareScrollView style={styles.main}>
+                <Image source={AppLogo} style={styles.appLogo}></Image>
+                <View style={styles.container}>
+                    <TextInput style={styles.textInput} placeholder="Plase enter your email" keyboardType='email-address' onChangeText={value => setEmail(value)} />
+                    <View style={styles.separator} />
+                    <TextInput style={styles.textInput} placeholder="Plase enter your password" secureTextEntry={true} onChangeText={value => setPassword(value)} />
+                    <View style={styles.separator} />
+                    <Button
+                        title={type}
+                        buttonStyle={styles.button}
+                        onPress={() => ValidateInputs()}
+                    />
+                    {type == "Login" &&
+                        <TouchableOpacity onPress={() => navigation.navigate(REGISTER)}><Text style={styles.info}>{info}</Text></TouchableOpacity>
+                    }
+                    {type == "Register" &&
+                        <TouchableOpacity onPress={() => navigation.navigate(LOGIN)}><Text style={styles.info}>{info}</Text></TouchableOpacity>
+                    }
+
+                </View>
+            </KeyboardAwareScrollView>
         </SafeAreaView>
     )
 }
@@ -71,14 +78,20 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.white
     },
     container: {
-        flex: 1,
+        height: 400,
         justifyContent: 'flex-end',
-        paddingBottom: 80,
+        bottom:50,
         marginHorizontal: 16,
     },
     title: {
         textAlign: 'center',
         marginVertical: 8,
+    },
+    appLogo: {
+        width: 250,
+        height: 250,
+        alignSelf: 'center',
+        marginTop: 50
     },
     separator: {
         marginVertical: 8,
