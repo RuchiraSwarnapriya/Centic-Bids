@@ -1,5 +1,5 @@
 import { SET_USER_DETAILS, GET_USER_DETAILS } from '../../action-types';
-import { fetchUserDeatils } from '../../../services/user';
+import { fetchUserDeatils } from '../../../services/User';
 
 export const getUserDetails = () => {
     return { type: GET_USER_DETAILS };

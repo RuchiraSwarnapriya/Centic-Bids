@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
 import auth from '@react-native-firebase/auth';
-import { registerUser, updateFcmToken } from "../../services/user";
+import { registerUser, updateFcmToken } from "../../services/User";
 import messaging from '@react-native-firebase/messaging';
 import { TOO_MANY_REQUEST, WRONG_PASSWORD, USER_NOT_FOUND, EMAIL_ALREADY_USED, WEAK_PASSWORD } from "../../utils/error-constants";
 
