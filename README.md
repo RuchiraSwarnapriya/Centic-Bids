@@ -4,7 +4,7 @@ CenticBids is an online bidding platform which allow users to bid for online auc
 
 ## Develpment Guide
 
-This project is developed using `react-native` as a frontend framework and `firebase` as a backend. If you do not have the firebase access please contact Project cordinator.
+This project is developed using `react-native` as a frontend framework and `firebase` as a backend.
 
 ## Quick start
 
